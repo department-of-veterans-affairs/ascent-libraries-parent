@@ -31,5 +31,28 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
     </dependency>   	
-  </dependencies>         
+  </dependencies>
+  <repositories>
+	<repository>
+		<id>vets</id>
+		<name>EVSS Nexus Repository</name>
+		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
+	</repository>
+  </repositories>
+  <pluginRepositories>
+	<pluginRepository>
+		<id>vets</id>
+		<name>EVSS Nexus Repository</name>
+		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
+	</pluginRepository>
+  </pluginRepositories>  
+  <build>
+    <plugins>
+		<!-- repackages jar and war plugins so they can be executed with command line -->
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
+	</plugins>
+  </build>
 </project>  
