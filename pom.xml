@@ -15,6 +15,32 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <packaging>pom</packaging>
   <name>${project.artifactId}</name>
   <description>Ascent Libraries Parent</description>
+  
+  <repositories>
+	<repository>
+		<id>vets</id>
+		<name>EVSS Nexus Repository</name>
+		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
+	</repository>
+  </repositories>
+  <pluginRepositories>
+	<pluginRepository>
+		<id>vets</id>
+		<name>EVSS Nexus Repository</name>
+		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
+	</pluginRepository>
+  </pluginRepositories>  
+  <distributionManagement>
+	<repository>
+		<id>vets.release</id>
+		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/repositories/releases/</url>
+	</repository>
+	<snapshotRepository>
+		<id>vets.snapshot</id>
+		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/repositories/snapshots/</url>
+	</snapshotRepository>
+  </distributionManagement>
+  
   <dependencies>  
    	<dependency>
         <groupId>org.apache.commons</groupId>
@@ -32,20 +58,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <artifactId>slf4j-api</artifactId>
     </dependency>   	
   </dependencies>
-  <repositories>
-	<repository>
-		<id>vets</id>
-		<name>EVSS Nexus Repository</name>
-		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
-	</repository>
-  </repositories>
-  <pluginRepositories>
-	<pluginRepository>
-		<id>vets</id>
-		<name>EVSS Nexus Repository</name>
-		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
-	</pluginRepository>
-  </pluginRepositories>  
   <build>
     <plugins>
 		<!-- repackages jar and war plugins so they can be executed with command line -->
