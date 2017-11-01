@@ -93,7 +93,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	    <groupId>junit</groupId>
 	    <artifactId>junit</artifactId>
 	</dependency>
-	  	
+	<!-- Apache Common IO dependency -->
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	     <version>2.5</version>
+	</dependency>	  	
   </dependencies>
   <build>
     <plugins>
