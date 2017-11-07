@@ -26,6 +26,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<docker.java.opts.ms>-Xms32m</docker.java.opts.ms>
 	<docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
 	<springfox.version>2.7.0</springfox.version>
+	<fest-assert.version>2.0M10</fest-assert.version>
+	<testng.version>6.9.10</testng.version>
 	<cucumber.version>1.2.5</cucumber.version>
 	<restassured.version>2.9.0</restassured.version>
 	<jacoco.outputRootDir>${project.basedir}/target/jacoco</jacoco.outputRootDir>
