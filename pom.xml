@@ -377,9 +377,14 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<id>docker-jar-project</id>
 		<activation>
 	     	<file><!-- add a file named .docker-jar-project-marker to war projects to activate this profile -->
-	       	<exists>${basedir}/.docker-jar-project-marker</exists>
+	       		<exists>${basedir}/.docker-jar-project-marker</exists>
 	     	</file>
 	    </activation>
+	    <properties>
+			<!-- Only unit tests are run when the docker-jar-project profile is active -->
+			<skipTests>false</skipTests>
+			<skipITs>true</skipITs>
+		</properties>
 		<build>
 			<plugins>
 				<plugin>
