@@ -126,12 +126,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<artifactId>logback-classic</artifactId>
 			<version>1.1.11</version>
 		</dependency>
-	    <!-- Test Dependencies -->
-		<dependency>
-		    <groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <version>4.12</version>
-		</dependency>
 	  </dependencies>
   </dependencyManagement>
   
