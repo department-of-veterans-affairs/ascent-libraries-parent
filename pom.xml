@@ -89,28 +89,31 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<artifactId>commons-io</artifactId>
 			<version>2.5</version>
 		</dependency>
-		<!-- Apache Commons project dependencies -->  
+		<!-- Apache Commons Lang dependency -->  
 	   	<dependency>
 	        <groupId>org.apache.commons</groupId>
 	        <artifactId>commons-lang3</artifactId>
 	        <version>3.5</version>
 	   	</dependency>
+	   	<!-- JCL Implemented Over SLF4J -->  
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.7.25</version>
 		</dependency>
+		<!-- Jackson Databind: General data-binding functionality for Jackson: works on core streaming API -->  
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.8.8</version>
 		</dependency>
-	   	<!-- Logging library dependencies -->
+	   	<!-- Logging Library dependency: slf4j API -->
 	    <dependency>
 	        <groupId>org.slf4j</groupId>
 	        <artifactId>slf4j-api</artifactId>
 	        <version>1.7.25</version>
 	    </dependency>
+	   	<!-- Apache Commons Logging -->
 	    <dependency>
 	       <groupId>commons-logging</groupId>
 	       <artifactId>commons-logging</artifactId>
@@ -127,6 +130,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<artifactId>logback-classic</artifactId>
 			<version>1.1.11</version>
 		</dependency>
+		<!-- Embedded REDIS -->
+	    <dependency>
+		  <groupId>com.github.kstyrc</groupId>
+	 	  <artifactId>embedded-redis</artifactId>
+	 	  <version>0.6</version>
+	    </dependency>
 	  </dependencies>
   </dependencyManagement>
   
