@@ -364,13 +364,14 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 						<goal>enforce</goal>
 					</goals>
 					<configuration>
-					<rules>
-						<requireReleaseDeps>
-						<message>No Snapshot Dependencies Allowed!</message>
-						<onlyWhenRelease>true</onlyWhenRelease>
-						</requireReleaseDeps>
-					</rules>
-					<fail>true</fail>
+						<rules>
+							<requireReleaseDeps>
+								<message>No Snapshot Dependencies Allowed!</message>
+								<onlyWhenRelease>true</onlyWhenRelease>
+								<failWhenParentIsSnapshot>true</failWhenParentIsSnapshot>
+							</requireReleaseDeps>
+						</rules>
+						<fail>true</fail>
 					</configuration>
 				</execution>
 			</executions>
