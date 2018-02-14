@@ -38,6 +38,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<sonar.jacoco.reportPaths>${jacoco.dataFile}</sonar.jacoco.reportPaths>
 	<sonar.profile.java>ASCENT</sonar.profile.java>
 	<sonar.maven.plugin.version>3.3.0.603</sonar.maven.plugin.version>
+	<sonar.coverage.exclusions>**/api/v*/transfer/**/*,**/*Application.java,*/*AbstractRemoteServiceCallMock.java</sonar.coverage.exclusions>
 	<sonar.exclusions>**/api/v*/transfer/**/*,**/*Application.java,*/*AbstractRemoteServiceCallMock.java</sonar.exclusions>
 	<include.int.tests.pattern>**/*IT.java,**/*Runner.java</include.int.tests.pattern>
 	<jgitflow.keepBranch>false</jgitflow.keepBranch>
