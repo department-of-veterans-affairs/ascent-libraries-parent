@@ -25,14 +25,19 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<!-- Docker properties to add min and max memory for spring boot jar start up -->
 	<docker.java.opts.ms>-Xms32m</docker.java.opts.ms>
 	<docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
+	<!-- spring fox version -->
 	<springfox.version>2.7.0</springfox.version>
+	<!-- Testing library versions -->
 	<fest-assert.version>2.0M10</fest-assert.version>
 	<testng.version>6.9.10</testng.version>
 	<cucumber.version>1.2.5</cucumber.version>
 	<restassured.version>2.9.0</restassured.version>
+	<selenium.htmlunit.version>2.52.0</selenium.htmlunit.version>
+	<surefire.junit47.version>2.20.1</surefire.junit47.version>
 	<jacoco.outputRootDir>${project.basedir}/target/jacoco</jacoco.outputRootDir>
 	<jacoco.dataFile>${jacoco.outputRootDir}/jacoco.exec</jacoco.dataFile>
 	<jacoco.reportDir>${jacoco.outputRootDir}/jacoco</jacoco.reportDir>
+	<!-- sonar properties -->
 	<sonar.host.url>http://localhost:9000</sonar.host.url>
 	<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 	<sonar.jacoco.reportPaths>${jacoco.dataFile}</sonar.jacoco.reportPaths>
@@ -53,6 +58,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<fortify.upload>false</fortify.upload> <!-- pass as -D from build server where upload is desired -->
 	<fortify.token>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.token>
 	<fortify.url>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.url>
+	<!-- maven properties -->
+	<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
+	<maven.jaxb2.plugin.version>0.13.3</maven.jaxb2.plugin.version>
+	<maven.cucumber.reporting.version>3.14.0</maven.cucumber.reporting.version>
+	<krasa.jaxb.tools.version>1.5</krasa.jaxb.tools.version>
+	<jaxb2.basics.annotate.version>1.0.2</jaxb2.basics.annotate.version>
   </properties>
   
   <repositories>
