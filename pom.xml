@@ -165,6 +165,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	 	  <artifactId>embedded-redis</artifactId>
 	 	  <version>0.6</version>
 	    </dependency>
+	    <!-- 3rd party for ascii art enhanced logging -->
+		<dependency>
+		    <groupId>com.github.lalyos</groupId>
+		    <artifactId>jfiglet</artifactId>
+		    <version>0.0.8</version>
+		</dependency>
 	  </dependencies>
   </dependencyManagement>
   
