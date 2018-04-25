@@ -26,7 +26,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<docker.java.opts.ms>-Xms32m</docker.java.opts.ms>
 	<docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
 	<!-- spring fox version -->
-	<springfox.version>2.7.0</springfox.version>
+	<springfox.version>2.9.0</springfox.version>
 	<!-- Testing library versions -->
 	<fest-assert.version>2.0M10</fest-assert.version>
 	<testng.version>6.9.10</testng.version>
@@ -102,6 +102,13 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<type>pom</type>
 			<scope>import</scope>
 		</dependency>
+		<!-- GUAVA VERSION EXPLICITELY OVERRIDDEN TO v20.0 AS SPRINGFOX 2.9.0 NEEDS IT 
+			 ELSE SWAGGER THROWS NOSUCHMETHODERROR -->
+		<dependency>
+	        <groupId>com.google.guava</groupId>
+	        <artifactId>guava</artifactId>
+	        <version>20.0</version>
+       </dependency>
 	   	<!-- Apache Common IO dependency -->
 	   	<dependency>
 			<groupId>commons-io</groupId>
@@ -124,7 +131,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.8.8</version>
+			<version>2.8.10</version>
 		</dependency>
 	   	<!-- Logging Library dependency: slf4j API -->
 	    <dependency>
