@@ -454,7 +454,17 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<skipTests>${skipPerfTests}</skipTests>
 				<!-- Enable JMeter reports -->
 				<generateReports>true</generateReports>
-				<overrideRootLogLevel>INFO</overrideRootLogLevel>
+				<!--
+			       To simplify debugging, it is advisable to adapt the loglevel.
+			       The jmeter logs are written to the file jmeter.log.
+			    -->
+				<overrideRootLogLevel>DEBUG</overrideRootLogLevel>
+				<!--
+			       By default, the console output during a jmeter test run is suppressed.
+			       We want to display the progress using the listener "Generate Summary Results" 
+			       (which periodically prints stats to stdout). Therefore we have to make sure,
+			       that the jmeter output is not suppressed.
+			    -->
 				<suppressJMeterOutput>false</suppressJMeterOutput>
 				<jmeterLogLevel>INFO</jmeterLogLevel>
 			</configuration>
