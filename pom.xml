@@ -451,10 +451,10 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<artifactId>jmeter-maven-plugin</artifactId>
 			<version>2.7.0</version>
 			<configuration>
+				<skipTests>${skipPerfTests}</skipTests>
 				<!-- Enable JMeter reports -->
 				<generateReports>true</generateReports>
-				<skipTests>false</skipTests>
-				<overrideRootLogLevel>DEBUG</overrideRootLogLevel>
+				<overrideRootLogLevel>INFO</overrideRootLogLevel>
 				<suppressJMeterOutput>false</suppressJMeterOutput>
 				<jmeterLogLevel>INFO</jmeterLogLevel>
 			</configuration>
@@ -529,6 +529,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<!-- Only unit tests are run when the development profile is active -->
 			<skipTests>false</skipTests>
 			<skipITs>true</skipITs>
+			<skipPerfTests>true</skipPerfTests>
 		</properties>
 	</profile>
 	<!-- The Configuration of the inttest profile -->
@@ -538,6 +539,17 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<!-- Only int tests are run when this inttest profile is active -->
 			<skipTests>true</skipTests>
 			<skipITs>false</skipITs>
+			<skipPerfTests>true</skipPerfTests>
+		</properties>
+	</profile>
+	<!-- The Configuration of the inttest profile -->
+	<profile>
+		<id>perftest</id>
+		<properties>
+			<!-- Only int tests are run when this inttest profile is active -->
+			<skipTests>true</skipTests>
+			<skipITs>true</skipITs>
+			<skipPerfTests>false</skipPerfTests>
 		</properties>
 	</profile>
 	</profiles>
