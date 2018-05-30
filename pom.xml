@@ -64,7 +64,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<maven.cucumber.reporting.version>3.14.0</maven.cucumber.reporting.version>
 	<krasa.jaxb.tools.version>1.5</krasa.jaxb.tools.version>
 	<jaxb2.basics.annotate.version>1.0.2</jaxb2.basics.annotate.version>
-	<cucumber.options>--tags @CI</cucumber.options>
   </properties>
   
   <repositories>
