@@ -172,15 +172,17 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		    <artifactId>jfiglet</artifactId>
 		    <version>0.0.8</version>
 		</dependency>
-	  </dependencies>
-
-    <!--  -->
+    <!-- Ant script for running fortify scans. Has a scope of provided
+             so it won't be packaged with the application -->
     <dependency>
 			<groupId>gov.va.vetservices.fortify-build-utils</groupId>
 			<artifactId>fortify-build-utils</artifactId>
 			<version>${fortify.build.util.version}</version>
 			<scope>provided</scope>
 		</dependency>
+	  </dependencies>
+
+
   </dependencyManagement>
 
   <build>
