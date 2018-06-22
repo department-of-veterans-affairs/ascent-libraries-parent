@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
@@ -6,15 +6,15 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<artifactId>spring-boot-starter-parent</artifactId>
 	<version>1.5.10.RELEASE</version>
 	<relativePath/> <!-- lookup parent from repository -->
-  </parent>  
-  
+  </parent>
+
   <groupId>gov.va.ascent</groupId>
   <artifactId>ascent-libraries-parent</artifactId>
   <version>0.0.4-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>${project.artifactId}</name>
   <description>Ascent Libraries Parent POM</description>
-  
+
   <properties>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -54,6 +54,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<fortify.debug>false</fortify.debug>
 	<fortify.maxHeap>1024m</fortify.maxHeap>
 	<fortify.maxPermGen>512m</fortify.maxPermGen>
+  <!-- This version will be replaced when fortify-build-utils version 1.0 is released -->
+  <fortify.build.util.version>1.0-SNAPSHOT</fortify.build.util.version>
+  <settings.file.location>${user.home}/.m2/settings.xml</settings.file.location>
 	<!-- fortify upload properties -->
 	<fortify.upload>false</fortify.upload> <!-- pass as -D from build server where upload is desired -->
 	<fortify.token>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.token>
@@ -64,8 +67,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<maven.cucumber.reporting.version>3.14.0</maven.cucumber.reporting.version>
 	<krasa.jaxb.tools.version>1.5</krasa.jaxb.tools.version>
 	<jaxb2.basics.annotate.version>1.0.2</jaxb2.basics.annotate.version>
+
   </properties>
-  
+
   <repositories>
 	<repository>
 		<id>vets</id>
@@ -73,7 +77,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
 	</repository>
   </repositories>
-  
+
   <pluginRepositories>
 	<pluginRepository>
 		<id>vets</id>
@@ -81,7 +85,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
 	</pluginRepository>
   </pluginRepositories>
-    
+
   <distributionManagement>
 	<repository>
 		<id>vets.release</id>
@@ -92,7 +96,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<url>${repo.snapshot}</url>
 	</snapshotRepository>
   </distributionManagement>
-  
+
   <dependencyManagement>
 	  <dependencies>
 	  	<dependency>
@@ -102,7 +106,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<type>pom</type>
 			<scope>import</scope>
 		</dependency>
-		<!-- GUAVA VERSION EXPLICITELY OVERRIDDEN TO v20.0 AS SPRINGFOX 2.9.0 NEEDS IT 
+		<!-- GUAVA VERSION EXPLICITELY OVERRIDDEN TO v20.0 AS SPRINGFOX 2.9.0 NEEDS IT
 			 ELSE SWAGGER THROWS NOSUCHMETHODERROR -->
 		<dependency>
 	        <groupId>com.google.guava</groupId>
@@ -115,19 +119,19 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<artifactId>commons-io</artifactId>
 			<version>2.5</version>
 		</dependency>
-		<!-- Apache Commons Lang dependency -->  
+		<!-- Apache Commons Lang dependency -->
 	   	<dependency>
 	        <groupId>org.apache.commons</groupId>
 	        <artifactId>commons-lang3</artifactId>
 	        <version>3.5</version>
 	   	</dependency>
-	   	<!-- JCL Implemented Over SLF4J -->  
+	   	<!-- JCL Implemented Over SLF4J -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.7.25</version>
 		</dependency>
-		<!-- Jackson Databind: General data-binding functionality for Jackson: works on core streaming API -->  
+		<!-- Jackson Databind: General data-binding functionality for Jackson: works on core streaming API -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -169,8 +173,16 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		    <version>0.0.8</version>
 		</dependency>
 	  </dependencies>
+
+    <!--  -->
+    <dependency>
+			<groupId>gov.va.vetservices.fortify-build-utils</groupId>
+			<artifactId>fortify-build-utils</artifactId>
+			<version>${fortify.build.util.version}</version>
+			<scope>provided</scope>
+		</dependency>
   </dependencyManagement>
-  
+
   <build>
   	<finalName>${project.artifactId}</finalName>
 	<resources>
@@ -393,6 +405,62 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<maxPermGen>${fortify.maxPermGen}</maxPermGen>
 			</configuration>
 		</plugin>
+    <!-- Antrun plugin that runs fortify scans via ant. The fortify scans are run using the sourceanalyzer
+         and FPRUtility commandline applications for now, so Fortify SCA will need to be installed before running -->
+         <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-antrun-plugin</artifactId>
+           <version>1.8</version>
+           <executions>
+             <execution>
+               <id>fortify-scan</id>
+               <configuration>
+                 <target>
+                   <property name="dir.scripts" value="target/antscripts" />
+                   <property name="fortify.util.version" value="${fortify.build.util.version}" />
+                   <property name="fortify.util.jar.path" value="${gov.va.vetservices.fortify-build-utils:fortify-build-utils:jar}" />
+                   <property name="settings.file.location" value="${settings.file.location}"/>
+
+                   <basename property="fortify.util.jar.filename" file="${fortify.util.jar.path}"/>
+
+                   <echo message="Using the fortify-build-utils file path: ${fortify.util.jar.path}" />
+                   <echo message="Version: ${fortify.util.version}"/>
+                   <echo message="File name: ${fortify.util.jar.filename}"/>
+                   <echo message="Clean ${dir.scripts}"/>
+                   <delete dir="${dir.scripts}"/>
+                   <mkdir dir="${dir.scripts}"/>
+                   <copy todir="${dir.scripts}" flatten="true" overwrite="true" file="${fortify.util.jar.path}"/>
+
+                   <unzip src="${dir.scripts}/${fortify.util.jar.filename}" dest="${dir.scripts}" failOnEmptyArchive="true">
+                     <mapper type="flatten"/>
+                     <patternset><include name="**/**/*.xml"/></patternset>
+                   </unzip>
+
+                   <property name="local.ant.lib" value="target/antlib" />
+                   <mkdir dir="${local.ant.lib}" />
+                   <get src="http://search.maven.org/remotecontent?filepath=org/eclipse/aether/aether-ant-tasks/1.0.0.v20140518/aether-ant-tasks-1.0.0.v20140518-uber.jar"
+                       dest="${local.ant.lib}/aether-ant-tasks-uber.jar" verbose="true" skipexisting="true"/>
+                     <fail message="Checksum mismatch for 'target/antlib/aether-ant-tasks-uber.jar'. Please delete it and rerun ant to redownload.">
+                       <condition>
+                         <not>
+                           <checksum file="${local.ant.lib}/aether-ant-tasks-uber.jar" algorithm="SHA"
+                               property="95dadd03392a75564904da45108cf048abe6e5bb" verifyproperty="checksum.matches"/>
+                         </not>
+                       </condition>
+                     </fail>
+
+                   <echo message="Running antfile ${dir.scripts}/fortify.xml" />
+                   <ant antfile="${dir.scripts}/fortify.xml">
+                     <property name="mvn.project.settings" value="${settings.file.location}"/>
+                   </ant>
+                 </target>
+               </configuration>
+               <goals>
+                 <goal>run</goal>
+               </goals>
+             </execution>
+           </executions>
+         </plugin>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-enforcer-plugin</artifactId>
@@ -465,7 +533,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<overrideRootLogLevel>DEBUG</overrideRootLogLevel>
 				<!--
 			       By default, the console output during a jmeter test run is suppressed.
-			       We want to display the progress using the listener "Generate Summary Results" 
+			       We want to display the progress using the listener "Generate Summary Results"
 			       (which periodically prints stats to stdout). Therefore we have to make sure,
 			       that the jmeter output is not suppressed.
 			    -->
