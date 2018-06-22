@@ -172,18 +172,24 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		    <artifactId>jfiglet</artifactId>
 		    <version>0.0.8</version>
 		</dependency>
-    <!-- Ant script for running fortify scans. Has a scope of provided
-             so it won't be packaged with the application -->
-    <dependency>
-			<groupId>gov.va.vetservices.fortify-build-utils</groupId>
-			<artifactId>fortify-build-utils</artifactId>
-			<version>${fortify.build.util.version}</version>
-			<scope>provided</scope>
-		</dependency>
+
 	  </dependencies>
-
-
   </dependencyManagement>
+
+    <dependencies>
+      <!-- Ant script for running fortify scans.
+              - Has a scope of provided so it won't be packaged
+                with the application
+              - Placed in the <dependencies> section so that the jar file path
+                can be read through a property with the dependency plugin.
+      -->
+      <dependency>
+  			<groupId>gov.va.vetservices.fortify-build-utils</groupId>
+  			<artifactId>fortify-build-utils</artifactId>
+  			<version>${fortify.build.util.version}</version>
+  			<scope>provided</scope>
+  		</dependency>
+    </dependencies>
 
   <build>
   	<finalName>${project.artifactId}</finalName>
