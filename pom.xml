@@ -55,7 +55,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<fortify.maxHeap>1024m</fortify.maxHeap>
 	<fortify.maxPermGen>512m</fortify.maxPermGen>
   <!-- This version will be replaced when fortify-build-utils version 1.0 is released -->
-  <fortify.build.util.version>1.0-SNAPSHOT</fortify.build.util.version>
+  <fortify.build.util.version>1.0</fortify.build.util.version>
   <settings.file.location>${user.home}/.m2/settings.xml</settings.file.location>
 	<!-- fortify upload properties -->
 	<fortify.upload>false</fortify.upload> <!-- pass as -D from build server where upload is desired -->
@@ -189,6 +189,13 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   			<version>${fortify.build.util.version}</version>
   			<scope>provided</scope>
   		</dependency>
+      <dependency>
+        <groupId>com.hpe.security.fortify.maven.plugin</groupId>
+  			<artifactId>sca-maven-plugin</artifactId>
+  			<version>17.20</version>
+        <type>jar</type>
+        <scope>provided</scope>
+      </dependency>
     </dependencies>
 
   <build>
@@ -209,7 +216,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		</resource>
    	</resources>
     <plugins>
-		<!-- repackages jar and war plugins so they can be executed with command line -->
+  		<!-- repackages jar and war plugins so they can be executed with command line -->
 		<plugin>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-maven-plugin</artifactId>
@@ -399,7 +406,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<plugin>
 			<groupId>com.hpe.security.fortify.maven.plugin</groupId>
 			<artifactId>sca-maven-plugin</artifactId>
-			<version>17.10</version>
+			<version>17.20</version>
 			<configuration>
 				<scanEnabled>${fortify.scanEnabled}</scanEnabled>
 				<projectName>${project.artifactId}</projectName>
@@ -418,7 +425,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
          <plugin>
            <groupId>org.apache.maven.plugins</groupId>
            <artifactId>maven-antrun-plugin</artifactId>
-           <version>1.8</version>
            <executions>
              <execution>
                <id>fortify-scan</id>
