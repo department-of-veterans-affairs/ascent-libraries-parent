@@ -55,7 +55,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<fortify.maxHeap>1024m</fortify.maxHeap>
 	<fortify.maxPermGen>512m</fortify.maxPermGen>
   <!-- This version will be replaced when fortify-build-utils version 1.0 is released -->
-  <fortify.build.util.version>1.0</fortify.build.util.version>
+  <fortify.build.util.version>1.1</fortify.build.util.version>
   <settings.file.location>${user.home}/.m2/settings.xml</settings.file.location>
 	<!-- fortify upload properties -->
 	<fortify.upload>false</fortify.upload> <!-- pass as -D from build server where upload is desired -->
