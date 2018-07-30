@@ -1,652 +1,662 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-parent</artifactId>
-	<version>1.5.10.RELEASE</version>
-	<relativePath/> <!-- lookup parent from repository -->
-  </parent>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.10.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
 
-  <groupId>gov.va.ascent</groupId>
-  <artifactId>ascent-libraries-parent</artifactId>
-  <version>0.0.4-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>${project.artifactId}</name>
-  <description>Ascent Libraries Parent POM</description>
+	<groupId>gov.va.ascent</groupId>
+	<artifactId>ascent-libraries-parent</artifactId>
+	<version>0.0.4-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+	<description>Ascent Libraries Parent POM</description>
 
-  <properties>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-	<java.version>1.8</java.version>
-	<repo.baseurl>http://csraciapp1.evss.srarad.com:8081/nexus/content</repo.baseurl>
-	<repo.release>${repo.baseurl}/repositories/releases</repo.release>
-	<repo.snapshot>${repo.baseurl}/repositories/snapshots</repo.snapshot>
-	<!-- Docker properties to add min and max memory for spring boot jar start up -->
-	<docker.java.opts.ms>-Xms32m</docker.java.opts.ms>
-	<docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
-	<!-- spring fox version -->
-	<springfox.version>2.9.2</springfox.version>
-	<!-- Testing library versions -->
-	<fest-assert.version>2.0M10</fest-assert.version>
-	<testng.version>6.9.10</testng.version>
-	<cucumber.version>1.2.5</cucumber.version>
-	<restassured.version>2.9.0</restassured.version>
-	<selenium.htmlunit.version>2.52.0</selenium.htmlunit.version>
-	<surefire.junit47.version>2.20.1</surefire.junit47.version>
-	<jacoco.outputRootDir>${project.basedir}/target/jacoco</jacoco.outputRootDir>
-	<jacoco.dataFile>${jacoco.outputRootDir}/jacoco.exec</jacoco.dataFile>
-	<jacoco.reportDir>${jacoco.outputRootDir}/jacoco</jacoco.reportDir>
-	<!-- sonar properties -->
-	<sonar.host.url>http://localhost:9000</sonar.host.url>
-	<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-	<sonar.jacoco.reportPaths>${jacoco.dataFile}</sonar.jacoco.reportPaths>
-	<sonar.profile.java>ASCENT</sonar.profile.java>
-	<sonar.maven.plugin.version>3.3.0.603</sonar.maven.plugin.version>
-	<sonar.coverage.exclusions>**/api/v*/transfer/**/*,**/*Application.java,**/*AbstractRemoteServiceCallMock.java</sonar.coverage.exclusions>
-	<sonar.exclusions>**/api/v*/transfer/**/*,**/*Application.java,**/*AbstractRemoteServiceCallMock.java</sonar.exclusions>
-	<include.int.tests.pattern>**/*IT.java,**/*Runner.java</include.int.tests.pattern>
-	<jgitflow.keepBranch>false</jgitflow.keepBranch>
-	<!-- fortify properties for easy override -->
-	<!-- fortify scan properties -->
-	<fortify.scanEnabled>true</fortify.scanEnabled>
-	<fortify.jre64>true</fortify.jre64>
-	<fortify.debug>false</fortify.debug>
-	<fortify.maxHeap>1024m</fortify.maxHeap>
-	<fortify.maxPermGen>512m</fortify.maxPermGen>
-  <!-- This version will be replaced when fortify-build-utils version 1.0 is released -->
-  <fortify.build.util.version>1.2</fortify.build.util.version>
-  <settings.file.location>${user.home}/.m2/settings.xml</settings.file.location>
-	<!-- fortify upload properties -->
-	<fortify.upload>false</fortify.upload> <!-- pass as -D from build server where upload is desired -->
-	<fortify.token>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.token>
-	<fortify.url>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.url>
-	<!-- maven properties -->
-	<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
-	<maven.jaxb2.plugin.version>0.13.3</maven.jaxb2.plugin.version>
-	<maven.cucumber.reporting.version>3.14.0</maven.cucumber.reporting.version>
-	<krasa.jaxb.tools.version>1.5</krasa.jaxb.tools.version>
-	<jaxb2.basics.annotate.version>1.0.2</jaxb2.basics.annotate.version>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<repo.baseurl>http://csraciapp1.evss.srarad.com:8081/nexus/content</repo.baseurl>
+		<repo.release>${repo.baseurl}/repositories/releases</repo.release>
+		<repo.snapshot>${repo.baseurl}/repositories/snapshots</repo.snapshot>
+		<!-- Docker properties to add min and max memory for spring boot jar start up -->
+		<docker.java.opts.ms>-Xms32m</docker.java.opts.ms>
+		<docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
+		<!-- spring fox version -->
+		<springfox.version>2.9.2</springfox.version>
+		<!-- Testing library versions -->
+		<fest-assert.version>2.0M10</fest-assert.version>
+		<testng.version>6.9.10</testng.version>
+		<cucumber.version>1.2.5</cucumber.version>
+		<restassured.version>2.9.0</restassured.version>
+		<selenium.htmlunit.version>2.52.0</selenium.htmlunit.version>
+		<surefire.junit47.version>2.20.1</surefire.junit47.version>
+		<jacoco.outputRootDir>${project.basedir}/target/jacoco</jacoco.outputRootDir>
+		<jacoco.dataFile>${jacoco.outputRootDir}/jacoco.exec</jacoco.dataFile>
+		<jacoco.reportDir>${jacoco.outputRootDir}/jacoco</jacoco.reportDir>
+		<!-- sonar properties -->
+		<sonar.host.url>http://localhost:9000</sonar.host.url>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.jacoco.reportPaths>${jacoco.dataFile}</sonar.jacoco.reportPaths>
+		<sonar.profile.java>ASCENT</sonar.profile.java>
+		<sonar.maven.plugin.version>3.3.0.603</sonar.maven.plugin.version>
+		<sonar.coverage.exclusions>**/api/v*/transfer/**/*,**/*Application.java,**/*AbstractRemoteServiceCallMock.java</sonar.coverage.exclusions>
+		<sonar.exclusions>**/api/v*/transfer/**/*,**/*Application.java,**/*AbstractRemoteServiceCallMock.java</sonar.exclusions>
+		<include.int.tests.pattern>**/*IT.java,**/*Runner.java</include.int.tests.pattern>
+		<jgitflow.keepBranch>false</jgitflow.keepBranch>
+		<!-- fortify properties for easy override -->
+		<!-- fortify scan properties -->
+		<fortify.scanEnabled>true</fortify.scanEnabled>
+		<fortify.jre64>true</fortify.jre64>
+		<fortify.debug>false</fortify.debug>
+		<fortify.maxHeap>1024m</fortify.maxHeap>
+		<fortify.maxPermGen>512m</fortify.maxPermGen>
+		<!-- This version will be replaced when fortify-build-utils version 1.0 is released -->
+		<fortify.build.util.version>1.2</fortify.build.util.version>
+		<settings.file.location>${user.home}/.m2/settings.xml</settings.file.location>
+		<!-- fortify upload properties -->
+		<fortify.upload>false</fortify.upload> <!-- pass as -D from build server where upload is desired -->
+		<fortify.token>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.token>
+		<fortify.url>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.url>
+		<!-- maven properties -->
+		<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
+		<maven.jaxb2.plugin.version>0.13.3</maven.jaxb2.plugin.version>
+		<maven.cucumber.reporting.version>3.14.0</maven.cucumber.reporting.version>
+		<krasa.jaxb.tools.version>1.5</krasa.jaxb.tools.version>
+		<jaxb2.basics.annotate.version>1.0.2</jaxb2.basics.annotate.version>
 
-  </properties>
+	</properties>
 
-  <repositories>
-	<repository>
-		<id>vets</id>
-		<name>EVSS Nexus Repository</name>
-		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
-	</repository>
-  </repositories>
+	<repositories>
+		<repository>
+			<id>vets</id>
+			<name>Gov.Cloud Nexus Repository</name>
+			<url>https://nexus.internal.vetservices.gov/repository/maven-public</url>
+		</repository>
+	</repositories>
 
-  <pluginRepositories>
-	<pluginRepository>
-		<id>vets</id>
-		<name>EVSS Nexus Repository</name>
-		<url>http://csraciapp1.evss.srarad.com:8081/nexus/content/groups/public</url>
-	</pluginRepository>
-  </pluginRepositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>vets</id>
+			<name>Gov.Cloud Nexus Repository</name>
+			<url>https://nexus.internal.vetservices.gov/repository/maven-public</url>
+		</pluginRepository>
+	</pluginRepositories>
 
-  <distributionManagement>
-	<repository>
-		<id>vets.release</id>
-		<url>${repo.release}</url>
-	</repository>
-	<snapshotRepository>
-		<id>vets.snapshot</id>
-		<url>${repo.snapshot}</url>
-	</snapshotRepository>
-  </distributionManagement>
+	<distributionManagement>
+		<repository>
+			<id>vets.release</id>
+			<url>${repo.release}</url>
+		</repository>
+		<snapshotRepository>
+			<id>vets.snapshot</id>
+			<url>${repo.snapshot}</url>
+		</snapshotRepository>
+	</distributionManagement>
 
-  <dependencyManagement>
-	  <dependencies>
-	  	<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-dependencies</artifactId>
-			<version>Dalston.SR5</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency>
-		<!-- GUAVA VERSION EXPLICITELY OVERRIDDEN TO v20.0 AS SPRINGFOX 2.9.0 NEEDS IT
-			 ELSE SWAGGER THROWS NOSUCHMETHODERROR -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Dalston.SR5</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- GUAVA VERSION EXPLICITELY OVERRIDDEN TO v20.0 AS SPRINGFOX 2.9.0 NEEDS IT
+				ELSE SWAGGER THROWS NOSUCHMETHODERROR -->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>20.0</version>
+			</dependency>
+			<!-- Apache Common IO dependency -->
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.5</version>
+			</dependency>
+			<!-- Apache Commons Lang dependency -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.5</version>
+			</dependency>
+			<!-- JCL Implemented Over SLF4J -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>1.7.25</version>
+			</dependency>
+			<!-- Jackson Databind: General data-binding functionality for Jackson: works on core streaming API -->
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.8.10</version>
+			</dependency>
+			<!-- Logging Library dependency: slf4j API -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.25</version>
+			</dependency>
+			<!-- Apache Commons Logging -->
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<!-- LogBack dependencies -->
+			<dependency>
+				<groupId>net.logstash.logback</groupId>
+				<artifactId>logstash-logback-encoder</artifactId>
+				<version>4.7</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>1.1.11</version>
+			</dependency>
+			<!-- Embedded REDIS -->
+			<dependency>
+				<groupId>com.github.kstyrc</groupId>
+				<artifactId>embedded-redis</artifactId>
+				<version>0.6</version>
+			</dependency>
+			<!-- 3rd party for ascii art enhanced logging -->
+			<dependency>
+				<groupId>com.github.lalyos</groupId>
+				<artifactId>jfiglet</artifactId>
+				<version>0.0.8</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- Ant script for running fortify scans.
+			- Has a scope of provided so it won't be packaged
+			with the application
+			- Placed in the <dependencies> section so that the jar file path
+			can be read through a property with the dependency plugin.
+		-->
 		<dependency>
-	        <groupId>com.google.guava</groupId>
-	        <artifactId>guava</artifactId>
-	        <version>20.0</version>
-       </dependency>
-	   	<!-- Apache Common IO dependency -->
-	   	<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.5</version>
-		</dependency>
-		<!-- Apache Commons Lang dependency -->
-	   	<dependency>
-	        <groupId>org.apache.commons</groupId>
-	        <artifactId>commons-lang3</artifactId>
-	        <version>3.5</version>
-	   	</dependency>
-	   	<!-- JCL Implemented Over SLF4J -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.7.25</version>
-		</dependency>
-		<!-- Jackson Databind: General data-binding functionality for Jackson: works on core streaming API -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.8.10</version>
-		</dependency>
-	   	<!-- Logging Library dependency: slf4j API -->
-	    <dependency>
-	        <groupId>org.slf4j</groupId>
-	        <artifactId>slf4j-api</artifactId>
-	        <version>1.7.25</version>
-	    </dependency>
-	   	<!-- Apache Commons Logging -->
-	    <dependency>
-	       <groupId>commons-logging</groupId>
-	       <artifactId>commons-logging</artifactId>
-	       <version>1.1.1</version>
-		</dependency>
-	    <!-- LogBack dependencies -->
-		<dependency>
-			<groupId>net.logstash.logback</groupId>
-			<artifactId>logstash-logback-encoder</artifactId>
-			<version>4.7</version>
+			<groupId>gov.va.vetservices.fortify-build-utils</groupId>
+			<artifactId>fortify-build-utils</artifactId>
+			<version>${fortify.build.util.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.1.11</version>
-		</dependency>
-		<!-- Embedded REDIS -->
-	    <dependency>
-		  <groupId>com.github.kstyrc</groupId>
-	 	  <artifactId>embedded-redis</artifactId>
-	 	  <version>0.6</version>
-	    </dependency>
-	    <!-- 3rd party for ascii art enhanced logging -->
-		<dependency>
-		    <groupId>com.github.lalyos</groupId>
-		    <artifactId>jfiglet</artifactId>
-		    <version>0.0.8</version>
-		</dependency>
-
-	  </dependencies>
-  </dependencyManagement>
-
-    <dependencies>
-      <!-- Ant script for running fortify scans.
-              - Has a scope of provided so it won't be packaged
-                with the application
-              - Placed in the <dependencies> section so that the jar file path
-                can be read through a property with the dependency plugin.
-      -->
-      <dependency>
-  			<groupId>gov.va.vetservices.fortify-build-utils</groupId>
-  			<artifactId>fortify-build-utils</artifactId>
-  			<version>${fortify.build.util.version}</version>
-  			<scope>provided</scope>
-  		</dependency>
-      <dependency>
-        <groupId>com.hpe.security.fortify.maven.plugin</groupId>
-  			<artifactId>sca-maven-plugin</artifactId>
-  			<version>17.20</version>
-        <type>jar</type>
-        <scope>provided</scope>
-      </dependency>
-    </dependencies>
-
-  <build>
-  	<finalName>${project.artifactId}</finalName>
-	<resources>
-   		<resource>
-	        <directory>src/main/resources</directory>
-	        <filtering>true</filtering>
-	        <includes>
-                   <include>**/*</include>
-               </includes>
-			<excludes>
-				<exclude>**/cert/*</exclude>
-			</excludes>
-	    </resource>
-		<resource>
-			<directory>src/main/resources/cert</directory>
-		</resource>
-   	</resources>
-    <plugins>
-  		<!-- repackages jar and war plugins so they can be executed with command line -->
-		<plugin>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-maven-plugin</artifactId>
-		</plugin>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<configuration>
-				<source>${java.version}</source>
-				<target>${java.version}</target>
-			</configuration>
-		</plugin>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-javadoc-plugin</artifactId>
-			<configuration>
-				<failOnError>false</failOnError>
-				<additionalparam>-Xdoclint:none</additionalparam>
-			</configuration>
-			<executions>
-				<execution>
-					<id>attach-javadocs</id>
-					<phase>package</phase>
-					<goals>
-						<goal>jar</goal>
-					</goals>
-				</execution>
-			</executions>
-		</plugin>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-jar-plugin</artifactId>
-			<configuration>
-				<archive>
-					<manifestEntries>
-						<Build-Time>${maven.build.timestamp}</Build-Time>
-						<Implementation-Version>${project.version}</Implementation-Version>
-						<Implementation-GIT-Revision>${GIT_COMMIT}</Implementation-GIT-Revision>
-						<Implementation-Build-Number>${BUILD_NUMBER}</Implementation-Build-Number>
-					</manifestEntries>
-				</archive>
-			</configuration>
-			<executions>
-				<execution>
-					<goals>
-						<goal>test-jar</goal>
-					</goals>
-				</execution>
-			</executions>
-		</plugin>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-surefire-plugin</artifactId>
-			<configuration>
-				<skipTests>${skipTests}</skipTests>
-			</configuration>
-		</plugin>
-		<plugin>
-			<groupId>net.masterthought</groupId>
-			<artifactId>maven-cucumber-reporting</artifactId>
-			<version>2.8.0</version>
-			<executions>
-				<execution>
-					<id>execution</id>
-					<phase>verify</phase>
-					<goals>
-						<goal>generate</goal>
-					</goals>
-					<configuration>
-						<skipTests>${skipITs}</skipTests>
-						<projectName>${project.artifactId}</projectName>
-						<outputDirectory>${project.build.directory}/site/cucumber-reports
-						</outputDirectory>
-						<cucumberOutput>${project.build.directory}/cucumber.json
-						</cucumberOutput>
-						<skippedFails>true</skippedFails>
-						<enableFlashCharts>false</enableFlashCharts>
-						<buildNumber>${project.version}</buildNumber>
-					</configuration>
-				</execution>
-			</executions>
-		</plugin>
-		<plugin>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>build-helper-maven-plugin</artifactId>
-			<executions>
-				<!-- Add a new inttest source directory to our build -->
-				<execution>
-					<id>add-integration-test-sources</id>
-					<phase>generate-sources</phase>
-					<goals>
-						<goal>add-test-source</goal>
-					</goals>
-					<configuration>
-						<sources>
-							<source>src/inttest/java</source>
-						</sources>
-					</configuration>
-				</execution>
-				<!-- Add a new inttest resource directory to our build -->
-				<execution>
-					<id>add-integration-test-resources</id>
-					<phase>generate-test-resources</phase>
-					<goals>
-						<goal>add-test-resource</goal>
-					</goals>
-					<configuration>
-						<resources>
-							<resource>
-								<filtering>true</filtering>
-								<directory>src/inttest/resources</directory>
-							</resource>
-						</resources>
-					</configuration>
-				</execution>
-				<!-- add the parsed version properties into the build environment for usage as needed -->
-				<execution>
-					<phase>initialize</phase>
-					<id>parse-version</id>
-					<goals>
-						<goal>parse-version</goal>
-					</goals>
-				</execution>
-			</executions>
-		</plugin>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-source-plugin</artifactId>
-			<executions>
-				<execution>
-					<id>attach-sources</id>
-					<phase>verify</phase>
-					<goals>
-						<goal>jar</goal>
-						<goal>test-jar</goal>
-					</goals>
-					<configuration>
-						<outputDirectory>${project.build.directory}/sources</outputDirectory>
-					</configuration>
-				</execution>
-			</executions>
-		</plugin>
-		<plugin>
-			<groupId>org.sonarsource.scanner.maven</groupId>
-			<artifactId>sonar-maven-plugin</artifactId>
-			<version>${sonar.maven.plugin.version}</version>
-		</plugin>
-		<plugin>
-			<groupId>org.jacoco</groupId>
-			<artifactId>jacoco-maven-plugin</artifactId>
-			<version>0.7.9</version>
-			<configuration>
-				<destFile>${jacoco.dataFile}</destFile>
-				<append>true</append>
-				<excludes>
-					<exclude>**/static/features/**/*</exclude>
-					<exclude>**com.steadystate*</exclude>
-				</excludes>
-			</configuration>
-			<executions>
-				<execution>
-					<id>prepare-agent</id>
-					<goals>
-						<goal>prepare-agent</goal>
-					</goals>
-				</execution>
-				<execution>
-					<id>report</id>
-					<phase>prepare-package</phase>
-					<goals>
-						<goal>report</goal>
-					</goals>
-				</execution>
-				<execution>
-					<id>post-unit-test</id>
-					<phase>test</phase>
-					<goals>
-						<goal>report</goal>
-					</goals>
-					<configuration>
-						<dataFile>${jacoco.dataFile}</dataFile>
-						<outputDirectory>${jacoco.reportDir}</outputDirectory>
-					</configuration>
-				</execution>
-			</executions>
-		</plugin>
-		<plugin>
 			<groupId>com.hpe.security.fortify.maven.plugin</groupId>
 			<artifactId>sca-maven-plugin</artifactId>
 			<version>17.20</version>
-			<configuration>
-				<scanEnabled>${fortify.scanEnabled}</scanEnabled>
-				<projectName>${project.artifactId}</projectName>
-				<projectVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}</projectVersion>
-				<upload>${fortify.upload}</upload>
-				<f360Url>${fortify.url}</f360Url>
-				<f360AuthToken>${fortify.token}</f360AuthToken>
-				<jre64>${fortify.jre64}</jre64>
-				<debug>${fortify.debug}</debug>
-				<maxHeap>${fortify.maxHeap}</maxHeap>
-				<maxPermGen>${fortify.maxPermGen}</maxPermGen>
-			</configuration>
-		</plugin>
-    <!-- Antrun plugin that runs fortify scans via ant. The fortify scans are run using the sourceanalyzer
-         and FPRUtility commandline applications for now, so Fortify SCA will need to be installed before running -->
-         <plugin>
-           <groupId>org.apache.maven.plugins</groupId>
-           <artifactId>maven-antrun-plugin</artifactId>
-           <executions>
-             <execution>
-               <id>fortify-scan</id>
-               <configuration>
-                 <target>
-                   <property name="dir.scripts" value="target/antscripts" />
-                   <property name="fortify.util.version" value="${fortify.build.util.version}" />
-                   <property name="fortify.util.jar.path" value="${gov.va.vetservices.fortify-build-utils:fortify-build-utils:jar}" />
-                   <property name="settings.file.location" value="${settings.file.location}"/>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
-                   <basename property="fortify.util.jar.filename" file="${fortify.util.jar.path}"/>
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+				<excludes>
+					<exclude>**/cert/*</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources/cert</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<!-- repackages jar and war plugins so they can be executed with command line -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<failOnError>false</failOnError>
+					<additionalparam>-Xdoclint:none</additionalparam>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Build-Time>${maven.build.timestamp}</Build-Time>
+							<Implementation-Version>${project.version}</Implementation-Version>
+							<Implementation-GIT-Revision>${GIT_COMMIT}</Implementation-GIT-Revision>
+							<Implementation-Build-Number>${BUILD_NUMBER}</Implementation-Build-Number>
+						</manifestEntries>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>${skipTests}</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>2.8.0</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<skipTests>${skipITs}</skipTests>
+							<projectName>${project.artifactId}</projectName>
+							<outputDirectory>${project.build.directory}/site/cucumber-reports
+							</outputDirectory>
+							<cucumberOutput>${project.build.directory}/cucumber.json
+							</cucumberOutput>
+							<skippedFails>true</skippedFails>
+							<enableFlashCharts>false</enableFlashCharts>
+							<buildNumber>${project.version}</buildNumber>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<!-- Add a new inttest source directory to our build -->
+					<execution>
+						<id>add-integration-test-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/inttest/java</source>
+							</sources>
+						</configuration>
+					</execution>
+					<!-- Add a new inttest resource directory to our build -->
+					<execution>
+						<id>add-integration-test-resources</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>add-test-resource</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<filtering>true</filtering>
+									<directory>src/inttest/resources</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<!-- add the parsed version properties into the build environment for usage as needed -->
+					<execution>
+						<phase>initialize</phase>
+						<id>parse-version</id>
+						<goals>
+							<goal>parse-version</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+							<goal>test-jar</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/sources</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>${sonar.maven.plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.9</version>
+				<configuration>
+					<destFile>${jacoco.dataFile}</destFile>
+					<append>true</append>
+					<excludes>
+						<exclude>**/static/features/**/*</exclude>
+						<exclude>**com.steadystate*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>${jacoco.dataFile}</dataFile>
+							<outputDirectory>${jacoco.reportDir}</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.hpe.security.fortify.maven.plugin</groupId>
+				<artifactId>sca-maven-plugin</artifactId>
+				<version>17.20</version>
+				<configuration>
+					<scanEnabled>${fortify.scanEnabled}</scanEnabled>
+					<projectName>${project.artifactId}</projectName>
+					<projectVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}</projectVersion>
+					<upload>${fortify.upload}</upload>
+					<f360Url>${fortify.url}</f360Url>
+					<f360AuthToken>${fortify.token}</f360AuthToken>
+					<jre64>${fortify.jre64}</jre64>
+					<debug>${fortify.debug}</debug>
+					<maxHeap>${fortify.maxHeap}</maxHeap>
+					<maxPermGen>${fortify.maxPermGen}</maxPermGen>
+				</configuration>
+			</plugin>
+			<!-- Antrun plugin that runs fortify scans via ant. The fortify scans are run using the sourceanalyzer
+				and FPRUtility commandline applications for now, so Fortify SCA will need to be installed before running -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>fortify-scan</id>
+						<configuration>
+							<target>
+								<property name="dir.scripts" value="target/antscripts" />
+								<property name="fortify.util.version" value="${fortify.build.util.version}" />
+								<property name="fortify.util.jar.path"
+									value="${gov.va.vetservices.fortify-build-utils:fortify-build-utils:jar}" />
+								<property name="settings.file.location" value="${settings.file.location}" />
 
-                   <echo message="Using the fortify-build-utils file path: ${fortify.util.jar.path}" />
-                   <echo message="Version: ${fortify.util.version}"/>
-                   <echo message="File name: ${fortify.util.jar.filename}"/>
-                   <echo message="Clean ${dir.scripts}"/>
-                   <delete dir="${dir.scripts}"/>
-                   <mkdir dir="${dir.scripts}"/>
-                   <copy todir="${dir.scripts}" flatten="true" overwrite="true" file="${fortify.util.jar.path}"/>
+								<basename property="fortify.util.jar.filename" file="${fortify.util.jar.path}" />
 
-                   <unzip src="${dir.scripts}/${fortify.util.jar.filename}" dest="${dir.scripts}" failOnEmptyArchive="true">
-                     <mapper type="flatten"/>
-                     <patternset><include name="**/**/*.xml"/></patternset>
-                   </unzip>
+								<echo message="Using the fortify-build-utils file path: ${fortify.util.jar.path}" />
+								<echo message="Version: ${fortify.util.version}" />
+								<echo message="File name: ${fortify.util.jar.filename}" />
+								<echo message="Clean ${dir.scripts}" />
+								<delete dir="${dir.scripts}" />
+								<mkdir dir="${dir.scripts}" />
+								<copy todir="${dir.scripts}" flatten="true" overwrite="true" file="${fortify.util.jar.path}" />
 
-                   <property name="local.ant.lib" value="target/antlib" />
-                   <mkdir dir="${local.ant.lib}" />
-                   <get src="http://search.maven.org/remotecontent?filepath=org/eclipse/aether/aether-ant-tasks/1.0.0.v20140518/aether-ant-tasks-1.0.0.v20140518-uber.jar"
-                       dest="${local.ant.lib}/aether-ant-tasks-uber.jar" verbose="true" skipexisting="true"/>
-                     <fail message="Checksum mismatch for 'target/antlib/aether-ant-tasks-uber.jar'. Please delete it and rerun ant to redownload.">
-                       <condition>
-                         <not>
-                           <checksum file="${local.ant.lib}/aether-ant-tasks-uber.jar" algorithm="SHA"
-                               property="95dadd03392a75564904da45108cf048abe6e5bb" verifyproperty="checksum.matches"/>
-                         </not>
-                       </condition>
-                     </fail>
+								<unzip src="${dir.scripts}/${fortify.util.jar.filename}" dest="${dir.scripts}" failOnEmptyArchive="true">
+									<mapper type="flatten" />
+									<patternset>
+										<include name="**/**/*.xml" />
+									</patternset>
+								</unzip>
 
-                   <echo message="Running antfile ${dir.scripts}/fortify.xml" />
-                   <ant antfile="${dir.scripts}/fortify.xml">
-                     <property name="mvn.project.settings" value="${settings.file.location}"/>
-                   </ant>
-                 </target>
-               </configuration>
-               <goals>
-                 <goal>run</goal>
-               </goals>
-             </execution>
-           </executions>
-         </plugin>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-enforcer-plugin</artifactId>
-			<executions>
-				<execution>
-					<id>enforce-no-snapshots</id>
-					<goals>
-						<goal>enforce</goal>
-					</goals>
-					<configuration>
-						<rules>
-							<requireReleaseDeps>
-								<message>No Snapshot Dependencies Allowed!</message>
-								<onlyWhenRelease>true</onlyWhenRelease>
-								<failWhenParentIsSnapshot>true</failWhenParentIsSnapshot>
-							</requireReleaseDeps>
-						</rules>
-						<fail>true</fail>
-					</configuration>
-				</execution>
-			</executions>
-		</plugin>
-	</plugins>
-	<pluginManagement>
-      <!-- NOTE: These plugins will be removed from future versions of the super POM -->
-      <!-- They are kept for the moment as they are very unlikely to conflict with lifecycle mappings (MNG-4453) -->
-      <plugins>
-        <plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-failsafe-plugin</artifactId>
-			<executions>
-				<execution>
-					<goals>
-						<goal>integration-test</goal>
-						<goal>verify</goal>
-					</goals>
-					<configuration>
-						<skipTests>${skipITs}</skipTests>
-						<includes>
-							<include>${include.int.tests.pattern}</include>
-						</includes>
-						<suiteXmlFiles>
-							<suiteXmlFile>src/inttest/resources/testng.xml</suiteXmlFile>
-						</suiteXmlFiles>
-						<parallel>classes</parallel>
-						<forkCount>10</forkCount>
-						<reuseForks>false</reuseForks>
-						<threadCount>10</threadCount>
-						<systemPropertyVariables>
-							<cucumber.options>${cucumber.options}</cucumber.options>
-							<test.env>${test.env}</test.env>
-						</systemPropertyVariables>
-					</configuration>
-				</execution>
-		  </executions>
-		</plugin>
-		<!-- NOTE: Plugins for JMeter Performance Tests-->
-		<plugin>
-			<groupId>com.lazerycode.jmeter</groupId>
-			<artifactId>jmeter-maven-plugin</artifactId>
-			<version>2.7.0</version>
-			<configuration>
-				<skipTests>${skipPerfTests}</skipTests>
-				<!-- Enable JMeter reports -->
-				<generateReports>true</generateReports>
-				<!--
-			       To simplify debugging, it is advisable to adapt the loglevel.
-			       The jmeter logs are written to the file jmeter.log.
-			    -->
-				<overrideRootLogLevel>DEBUG</overrideRootLogLevel>
-				<!--
-			       By default, the console output during a jmeter test run is suppressed.
-			       We want to display the progress using the listener "Generate Summary Results"
-			       (which periodically prints stats to stdout). Therefore we have to make sure,
-			       that the jmeter output is not suppressed.
-			    -->
-				<suppressJMeterOutput>false</suppressJMeterOutput>
-				<jmeterLogLevel>INFO</jmeterLogLevel>
-			</configuration>
-			<executions>
-				<!-- Configure JMeter tests -->
-				<execution>
-					<id>jmeter-configuration</id>
-					<goals>
-						<goal>configure</goal>
-					</goals>
-				</execution>
-				<!-- Run JMeter tests -->
-				<execution>
-					<id>jmeter-tests</id>
-					<goals>
-						<goal>jmeter</goal>
-					</goals>
-				</execution>
-				<!-- Fail build on errors in test -->
-				<execution>
-					<id>jmeter-check-results</id>
-					<goals>
-						<goal>results</goal>
-					</goals>
-				</execution>
-			</executions>
-		 </plugin>
-        </plugins>
-    </pluginManagement>
-  </build>
-  <profiles>
-	<profile>
-		<id>docker-jar-project</id>
-		<activation>
-	     	<file><!-- add a file named .docker-jar-project-marker to war projects to activate this profile -->
-	       		<exists>${basedir}/.docker-jar-project-marker</exists>
-	     	</file>
-	    </activation>
-	    <properties>
-			<!-- Only unit tests are run when the docker-jar-project profile is active -->
-			<skipTests>false</skipTests>
-			<skipITs>true</skipITs>
-		</properties>
-		<build>
+								<property name="local.ant.lib" value="target/antlib" />
+								<mkdir dir="${local.ant.lib}" />
+								<get
+									src="http://search.maven.org/remotecontent?filepath=org/eclipse/aether/aether-ant-tasks/1.0.0.v20140518/aether-ant-tasks-1.0.0.v20140518-uber.jar"
+									dest="${local.ant.lib}/aether-ant-tasks-uber.jar" verbose="true" skipexisting="true" />
+								<fail
+									message="Checksum mismatch for 'target/antlib/aether-ant-tasks-uber.jar'. Please delete it and rerun ant to redownload."
+								>
+									<condition>
+										<not>
+											<checksum file="${local.ant.lib}/aether-ant-tasks-uber.jar" algorithm="SHA"
+												property="95dadd03392a75564904da45108cf048abe6e5bb" verifyproperty="checksum.matches" />
+										</not>
+									</condition>
+								</fail>
+
+								<echo message="Running antfile ${dir.scripts}/fortify.xml" />
+								<ant antfile="${dir.scripts}/fortify.xml">
+									<property name="mvn.project.settings" value="${settings.file.location}" />
+								</ant>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-no-snapshots</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireReleaseDeps>
+									<message>No Snapshot Dependencies Allowed!</message>
+									<onlyWhenRelease>true</onlyWhenRelease>
+									<failWhenParentIsSnapshot>true</failWhenParentIsSnapshot>
+								</requireReleaseDeps>
+							</rules>
+							<fail>true</fail>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<!-- NOTE: These plugins will be removed from future versions of the super POM -->
+			<!-- They are kept for the moment as they are very unlikely to conflict with lifecycle mappings (MNG-4453) -->
 			<plugins>
 				<plugin>
-					<groupId>com.spotify</groupId>
-					<artifactId>dockerfile-maven-plugin</artifactId>
-					<version>1.4.0</version>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
 					<executions>
 						<execution>
-							<id>default</id>
 							<goals>
-								<goal>build</goal>
+								<goal>integration-test</goal>
+								<goal>verify</goal>
+							</goals>
+							<configuration>
+								<skipTests>${skipITs}</skipTests>
+								<includes>
+									<include>${include.int.tests.pattern}</include>
+								</includes>
+								<suiteXmlFiles>
+									<suiteXmlFile>src/inttest/resources/testng.xml</suiteXmlFile>
+								</suiteXmlFiles>
+								<parallel>classes</parallel>
+								<forkCount>10</forkCount>
+								<reuseForks>false</reuseForks>
+								<threadCount>10</threadCount>
+								<systemPropertyVariables>
+									<cucumber.options>${cucumber.options}</cucumber.options>
+									<test.env>${test.env}</test.env>
+								</systemPropertyVariables>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- NOTE: Plugins for JMeter Performance Tests -->
+				<plugin>
+					<groupId>com.lazerycode.jmeter</groupId>
+					<artifactId>jmeter-maven-plugin</artifactId>
+					<version>2.7.0</version>
+					<configuration>
+						<skipTests>${skipPerfTests}</skipTests>
+						<!-- Enable JMeter reports -->
+						<generateReports>true</generateReports>
+						<!--
+							To simplify debugging, it is advisable to adapt the loglevel.
+							The jmeter logs are written to the file jmeter.log.
+						-->
+						<overrideRootLogLevel>DEBUG</overrideRootLogLevel>
+						<!--
+							By default, the console output during a jmeter test run is suppressed.
+							We want to display the progress using the listener "Generate Summary Results"
+							(which periodically prints stats to stdout). Therefore we have to make sure,
+							that the jmeter output is not suppressed.
+						-->
+						<suppressJMeterOutput>false</suppressJMeterOutput>
+						<jmeterLogLevel>INFO</jmeterLogLevel>
+					</configuration>
+					<executions>
+						<!-- Configure JMeter tests -->
+						<execution>
+							<id>jmeter-configuration</id>
+							<goals>
+								<goal>configure</goal>
+							</goals>
+						</execution>
+						<!-- Run JMeter tests -->
+						<execution>
+							<id>jmeter-tests</id>
+							<goals>
+								<goal>jmeter</goal>
+							</goals>
+						</execution>
+						<!-- Fail build on errors in test -->
+						<execution>
+							<id>jmeter-check-results</id>
+							<goals>
+								<goal>results</goal>
 							</goals>
 						</execution>
 					</executions>
-					<configuration>
-						<repository>ascent/${project.artifactId}</repository>
-					</configuration>
 				</plugin>
 			</plugins>
-		</build>
-	</profile>
-	<!-- The Configuration of the development profile -->
-	<profile>
-		<id>dev</id>
-		<activation>
-			<activeByDefault>true</activeByDefault>
-		</activation>
-		<properties>
-			<!-- Only unit tests are run when the development profile is active -->
-			<skipTests>false</skipTests>
-			<skipITs>true</skipITs>
-			<skipPerfTests>true</skipPerfTests>
-		</properties>
-	</profile>
-	<!-- The Configuration of the inttest profile -->
-	<profile>
-		<id>inttest</id>
-		<properties>
-			<!-- Only int tests are run when this inttest profile is active -->
-			<skipTests>true</skipTests>
-			<skipITs>false</skipITs>
-			<skipPerfTests>true</skipPerfTests>
-		</properties>
-	</profile>
-	<!-- The Configuration of the inttest profile -->
-	<profile>
-		<id>perftest</id>
-		<properties>
-			<!-- Only int tests are run when this inttest profile is active -->
-			<skipTests>true</skipTests>
-			<skipITs>true</skipITs>
-			<skipPerfTests>false</skipPerfTests>
-		</properties>
-	</profile>
+		</pluginManagement>
+	</build>
+	<profiles>
+		<profile>
+			<id>docker-jar-project</id>
+			<activation>
+				<file><!-- add a file named .docker-jar-project-marker to war projects to activate this profile -->
+					<exists>${basedir}/.docker-jar-project-marker</exists>
+				</file>
+			</activation>
+			<properties>
+				<!-- Only unit tests are run when the docker-jar-project profile is active -->
+				<skipTests>false</skipTests>
+				<skipITs>true</skipITs>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.spotify</groupId>
+						<artifactId>dockerfile-maven-plugin</artifactId>
+						<version>1.4.0</version>
+						<executions>
+							<execution>
+								<id>default</id>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<repository>ascent/${project.artifactId}</repository>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<!-- The Configuration of the development profile -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- Only unit tests are run when the development profile is active -->
+				<skipTests>false</skipTests>
+				<skipITs>true</skipITs>
+				<skipPerfTests>true</skipPerfTests>
+			</properties>
+		</profile>
+		<!-- The Configuration of the inttest profile -->
+		<profile>
+			<id>inttest</id>
+			<properties>
+				<!-- Only int tests are run when this inttest profile is active -->
+				<skipTests>true</skipTests>
+				<skipITs>false</skipITs>
+				<skipPerfTests>true</skipPerfTests>
+			</properties>
+		</profile>
+		<!-- The Configuration of the inttest profile -->
+		<profile>
+			<id>perftest</id>
+			<properties>
+				<!-- Only int tests are run when this inttest profile is active -->
+				<skipTests>true</skipTests>
+				<skipITs>true</skipITs>
+				<skipPerfTests>false</skipPerfTests>
+			</properties>
+		</profile>
 	</profiles>
 </project>
