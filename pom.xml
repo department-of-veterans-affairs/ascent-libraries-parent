@@ -14,7 +14,7 @@
 
 	<groupId>gov.va.ascent</groupId>
 	<artifactId>ascent-libraries-parent</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>0.0.4</version>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
 	<description>Ascent Libraries Parent POM</description>
@@ -23,7 +23,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<repo.baseurl>http://csraciapp1.evss.srarad.com:8081/nexus/content</repo.baseurl>
+		<repo.baseurl>https://nexus.internal.vetservices.gov/repository/maven-public</repo.baseurl>
 		<repo.release>${repo.baseurl}/repositories/releases</repo.release>
 		<repo.snapshot>${repo.baseurl}/repositories/snapshots</repo.snapshot>
 		<!-- Docker properties to add min and max memory for spring boot jar start up -->
