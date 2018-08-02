@@ -20,24 +20,21 @@
 	<description>Ascent Libraries Parent POM</description>
 
 	<properties>
+		<!--
+			Configuration properties
+		-->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<repo.baseurl>https://nexus.internal.vetservices.gov/repository/maven-public</repo.baseurl>
-		<repo.release>${repo.baseurl}/repositories/releases</repo.release>
-		<repo.snapshot>${repo.baseurl}/repositories/snapshots</repo.snapshot>
+		<!-- nexus properties -->
+		<repo.baseurl>https://nexus.internal.vetservices.gov/repository</repo.baseurl>
+		<repo.mirror>${repo.baseurl}/maven-public</repo.mirror>
+		<repo.release>${repo.baseurl}/maven-releases</repo.release>
+		<repo.snapshot>${repo.baseurl}/nmaven-snapshots</repo.snapshot>
 		<!-- Docker properties to add min and max memory for spring boot jar start up -->
 		<docker.java.opts.ms>-Xms32m</docker.java.opts.ms>
 		<docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
-		<!-- spring fox version -->
-		<springfox.version>2.9.2</springfox.version>
 		<!-- Testing library versions -->
-		<fest-assert.version>2.0M10</fest-assert.version>
-		<testng.version>6.9.10</testng.version>
-		<cucumber.version>1.2.5</cucumber.version>
-		<restassured.version>2.9.0</restassured.version>
-		<selenium.htmlunit.version>2.52.0</selenium.htmlunit.version>
-		<surefire.junit47.version>2.20.1</surefire.junit47.version>
 		<jacoco.outputRootDir>${project.basedir}/target/jacoco</jacoco.outputRootDir>
 		<jacoco.dataFile>${jacoco.outputRootDir}/jacoco.exec</jacoco.dataFile>
 		<jacoco.reportDir>${jacoco.outputRootDir}/jacoco</jacoco.reportDir>
@@ -46,7 +43,6 @@
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.jacoco.reportPaths>${jacoco.dataFile}</sonar.jacoco.reportPaths>
 		<sonar.profile.java>ASCENT</sonar.profile.java>
-		<sonar.maven.plugin.version>3.3.0.603</sonar.maven.plugin.version>
 		<sonar.coverage.exclusions>**/api/v*/transfer/**/*,**/*Application.java,**/*AbstractRemoteServiceCallMock.java</sonar.coverage.exclusions>
 		<sonar.exclusions>**/api/v*/transfer/**/*,**/*Application.java,**/*AbstractRemoteServiceCallMock.java</sonar.exclusions>
 		<include.int.tests.pattern>**/*IT.java,**/*Runner.java</include.int.tests.pattern>
@@ -59,26 +55,58 @@
 		<fortify.maxHeap>1024m</fortify.maxHeap>
 		<fortify.maxPermGen>512m</fortify.maxPermGen>
 		<!-- This version will be replaced when fortify-build-utils version 1.0 is released -->
-		<fortify.build.util.version>1.2</fortify.build.util.version>
 		<settings.file.location>${user.home}/.m2/settings.xml</settings.file.location>
 		<!-- fortify upload properties -->
 		<fortify.upload>false</fortify.upload> <!-- pass as -D from build server where upload is desired -->
 		<fortify.token>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.token>
 		<fortify.url>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.url>
-		<!-- maven properties -->
+
+		<!--
+			3rd party versions
+		 -->
+		 <!-- build software -->
 		<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
 		<maven.jaxb2.plugin.version>0.13.3</maven.jaxb2.plugin.version>
 		<maven.cucumber.reporting.version>3.14.0</maven.cucumber.reporting.version>
 		<krasa.jaxb.tools.version>1.5</krasa.jaxb.tools.version>
 		<jaxb2.basics.annotate.version>1.0.2</jaxb2.basics.annotate.version>
+		<sonar.maven.plugin.version>3.3.0.603</sonar.maven.plugin.version>
+		<fortify.build.util.version>1.2</fortify.build.util.version>
+		<sca-maven-plugin.version>17.20</sca-maven-plugin.version>
 
+		<surefire.junit47.version>2.20.1</surefire.junit47.version>
+		<maven-cucumber-reporting.version>2.8.0</maven-cucumber-reporting.version>
+		<jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
+		<jmeter-maven-plugin.version>2.7.0</jmeter-maven-plugin.version>
+		<dockerfile-maven-plugin.version>1.4.0</dockerfile-maven-plugin.version>
+		
+		<!-- application software -->
+		<spring-cloud-dependencies.version>Dalston.SR5</spring-cloud-dependencies.version>
+		<springfox.version>2.9.2</springfox.version>
+		<fest-assert.version>2.0M10</fest-assert.version>
+		<guava.version>20.0</guava.version>
+		<commons-io.version>2.5</commons-io.version>
+		<commons-lang3.version>3.5</commons-lang3.version>
+		<jcl-over-slf4j.version>1.7.25</jcl-over-slf4j.version>
+		<jackson-databind.version>2.8.10</jackson-databind.version>
+		<slf4j-api.version>1.7.25</slf4j-api.version>
+		<commons-logging.version>1.1.1</commons-logging.version>
+		<logstash-logback-encoder.version>4.7</logstash-logback-encoder.version>
+		<logback-classic.version>1.1.11</logback-classic.version>
+		<embedded-redis.version>0.6</embedded-redis.version>
+		<jfiglet.version>0.0.8</jfiglet.version>
+		
+		<testng.version>6.9.10</testng.version>
+		<cucumber.version>1.2.5</cucumber.version>
+		<restassured.version>2.9.0</restassured.version>
+		<selenium.htmlunit.version>2.52.0</selenium.htmlunit.version>
 	</properties>
 
 	<repositories>
 		<repository>
 			<id>vets</id>
 			<name>Gov.Cloud Nexus Repository</name>
-			<url>https://nexus.internal.vetservices.gov/repository/maven-public</url>
+			<url>${repo.mirror}</url>
 		</repository>
 	</repositories>
 
@@ -86,7 +114,7 @@
 		<pluginRepository>
 			<id>vets</id>
 			<name>Gov.Cloud Nexus Repository</name>
-			<url>https://nexus.internal.vetservices.gov/repository/maven-public</url>
+			<url>${repo.mirror}</url>
 		</pluginRepository>
 	</pluginRepositories>
 
@@ -106,7 +134,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Dalston.SR5</version>
+				<version>${spring-cloud-dependencies.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -115,66 +143,66 @@
 			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
-				<version>20.0</version>
+				<version>${guava.version}</version>
 			</dependency>
 			<!-- Apache Common IO dependency -->
 			<dependency>
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
-				<version>2.5</version>
+				<version>${commons-io.version}</version>
 			</dependency>
 			<!-- Apache Commons Lang dependency -->
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
-				<version>3.5</version>
+				<version>${commons-lang3.version}</version>
 			</dependency>
 			<!-- JCL Implemented Over SLF4J -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>jcl-over-slf4j</artifactId>
-				<version>1.7.25</version>
+				<version>${jcl-over-slf4j.version}</version>
 			</dependency>
 			<!-- Jackson Databind: General data-binding functionality for Jackson: works on core streaming API -->
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
-				<version>2.8.10</version>
+				<version>${jackson-databind.version}</version>
 			</dependency>
 			<!-- Logging Library dependency: slf4j API -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>1.7.25</version>
+				<version>${slf4j-api.version}</version>
 			</dependency>
 			<!-- Apache Commons Logging -->
 			<dependency>
 				<groupId>commons-logging</groupId>
 				<artifactId>commons-logging</artifactId>
-				<version>1.1.1</version>
+				<version>${commons-logging.version}</version>
 			</dependency>
 			<!-- LogBack dependencies -->
 			<dependency>
 				<groupId>net.logstash.logback</groupId>
 				<artifactId>logstash-logback-encoder</artifactId>
-				<version>4.7</version>
+				<version>${logstash-logback-encoder.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>
-				<version>1.1.11</version>
+				<version>${logback-classic.version}</version>
 			</dependency>
 			<!-- Embedded REDIS -->
 			<dependency>
 				<groupId>com.github.kstyrc</groupId>
 				<artifactId>embedded-redis</artifactId>
-				<version>0.6</version>
+				<version>${embedded-redis.version}</version>
 			</dependency>
 			<!-- 3rd party for ascii art enhanced logging -->
 			<dependency>
 				<groupId>com.github.lalyos</groupId>
 				<artifactId>jfiglet</artifactId>
-				<version>0.0.8</version>
+				<version>${jfiglet.version}</version>
 			</dependency>
 
 		</dependencies>
@@ -196,7 +224,7 @@
 		<dependency>
 			<groupId>com.hpe.security.fortify.maven.plugin</groupId>
 			<artifactId>sca-maven-plugin</artifactId>
-			<version>17.20</version>
+			<version>${sca-maven-plugin.version}</version>
 			<type>jar</type>
 			<scope>provided</scope>
 		</dependency>
@@ -281,7 +309,7 @@
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
-				<version>2.8.0</version>
+				<version>${maven-cucumber-reporting.version}</version>
 				<executions>
 					<execution>
 						<id>execution</id>
@@ -371,7 +399,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.9</version>
+				<version>${jacoco-maven-plugin.version}</version>
 				<configuration>
 					<destFile>${jacoco.dataFile}</destFile>
 					<append>true</append>
@@ -410,7 +438,7 @@
 			<plugin>
 				<groupId>com.hpe.security.fortify.maven.plugin</groupId>
 				<artifactId>sca-maven-plugin</artifactId>
-				<version>17.20</version>
+				<version>${sca-maven-plugin.version}</version>
 				<configuration>
 					<scanEnabled>${fortify.scanEnabled}</scanEnabled>
 					<projectName>${project.artifactId}</projectName>
@@ -545,7 +573,7 @@
 				<plugin>
 					<groupId>com.lazerycode.jmeter</groupId>
 					<artifactId>jmeter-maven-plugin</artifactId>
-					<version>2.7.0</version>
+					<version>${jmeter-maven-plugin.version}</version>
 					<configuration>
 						<skipTests>${skipPerfTests}</skipTests>
 						<!-- Enable JMeter reports -->
@@ -609,7 +637,7 @@
 					<plugin>
 						<groupId>com.spotify</groupId>
 						<artifactId>dockerfile-maven-plugin</artifactId>
-						<version>1.4.0</version>
+						<version>${dockerfile-maven-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>default</id>
