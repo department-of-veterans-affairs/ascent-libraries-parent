@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -20,9 +18,7 @@
 	<description>Ascent Libraries Parent POM</description>
 
 	<properties>
-		<!--
-			Configuration properties
-		-->
+		<!-- Configuration properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -31,7 +27,8 @@
 		<repo.mirror>${repo.baseurl}/maven-public</repo.mirror>
 		<repo.release>${repo.baseurl}/maven-releases</repo.release>
 		<repo.snapshot>${repo.baseurl}/nmaven-snapshots</repo.snapshot>
-		<!-- Docker properties to add min and max memory for spring boot jar start up -->
+		<!-- Docker properties to add min and max memory for spring boot jar start 
+			up -->
 		<docker.java.opts.ms>-Xms32m</docker.java.opts.ms>
 		<docker.java.opts.mx>-Xmx256m</docker.java.opts.mx>
 		<!-- Testing library versions -->
@@ -54,17 +51,16 @@
 		<fortify.debug>false</fortify.debug>
 		<fortify.maxHeap>1024m</fortify.maxHeap>
 		<fortify.maxPermGen>512m</fortify.maxPermGen>
-		<!-- This version will be replaced when fortify-build-utils version 1.0 is released -->
+		<!-- This version will be replaced when fortify-build-utils version 1.0 
+			is released -->
 		<settings.file.location>${user.home}/.m2/settings.xml</settings.file.location>
 		<!-- fortify upload properties -->
 		<fortify.upload>false</fortify.upload> <!-- pass as -D from build server where upload is desired -->
 		<fortify.token>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.token>
 		<fortify.url>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.url>
 
-		<!--
-			3rd party versions
-		 -->
-		 <!-- build software -->
+		<!-- 3rd party versions -->
+		<!-- build software -->
 		<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
 		<maven.jaxb2.plugin.version>0.13.3</maven.jaxb2.plugin.version>
 		<maven.cucumber.reporting.version>3.14.0</maven.cucumber.reporting.version>
@@ -79,7 +75,7 @@
 		<jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
 		<jmeter-maven-plugin.version>2.7.0</jmeter-maven-plugin.version>
 		<dockerfile-maven-plugin.version>1.4.0</dockerfile-maven-plugin.version>
-		
+
 		<!-- application software -->
 		<spring-cloud-dependencies.version>Dalston.SR5</spring-cloud-dependencies.version>
 		<springfox.version>2.9.2</springfox.version>
@@ -95,7 +91,7 @@
 		<logback-classic.version>1.1.11</logback-classic.version>
 		<embedded-redis.version>0.6</embedded-redis.version>
 		<jfiglet.version>0.0.8</jfiglet.version>
-		
+
 		<testng.version>6.9.10</testng.version>
 		<cucumber.version>1.2.5</cucumber.version>
 		<restassured.version>2.9.0</restassured.version>
@@ -138,8 +134,8 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!-- GUAVA VERSION EXPLICITELY OVERRIDDEN TO v20.0 AS SPRINGFOX 2.9.0 NEEDS IT
-				ELSE SWAGGER THROWS NOSUCHMETHODERROR -->
+			<!-- GUAVA VERSION EXPLICITELY OVERRIDDEN TO v20.0 AS SPRINGFOX 2.9.0 
+				NEEDS IT ELSE SWAGGER THROWS NOSUCHMETHODERROR -->
 			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
@@ -163,7 +159,8 @@
 				<artifactId>jcl-over-slf4j</artifactId>
 				<version>${jcl-over-slf4j.version}</version>
 			</dependency>
-			<!-- Jackson Databind: General data-binding functionality for Jackson: works on core streaming API -->
+			<!-- Jackson Databind: General data-binding functionality for Jackson: 
+				works on core streaming API -->
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
@@ -209,12 +206,10 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- Ant script for running fortify scans.
-			- Has a scope of provided so it won't be packaged
-			with the application
-			- Placed in the <dependencies> section so that the jar file path
-			can be read through a property with the dependency plugin.
-		-->
+		<!-- Ant script for running fortify scans. - Has a scope of provided so 
+			it won't be packaged with the application - Placed in the <dependencies> 
+			section so that the jar file path can be read through a property with the 
+			dependency plugin. -->
 		<dependency>
 			<groupId>gov.va.vetservices.fortify-build-utils</groupId>
 			<artifactId>fortify-build-utils</artifactId>
@@ -241,6 +236,7 @@
 				</includes>
 				<excludes>
 					<exclude>**/cert/*</exclude>
+					<exclude>**/vetservices-document-inttest/src/inttest/resources/documents/*</exclude>
 				</excludes>
 			</resource>
 			<resource>
@@ -248,7 +244,8 @@
 			</resource>
 		</resources>
 		<plugins>
-			<!-- repackages jar and war plugins so they can be executed with command line -->
+			<!-- repackages jar and war plugins so they can be executed with command 
+				line -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -360,6 +357,16 @@
 								<resource>
 									<filtering>true</filtering>
 									<directory>src/inttest/resources</directory>
+									<includes>
+										<include>**/*</include>
+									</includes>
+									<excludes>
+										<exclude>**/documents/*</exclude>
+									</excludes>
+								</resource>
+								<resource>
+									<targetPath>documents</targetPath>
+									<directory>src/inttest/resources/documents</directory>
 								</resource>
 							</resources>
 						</configuration>
@@ -452,8 +459,9 @@
 					<maxPermGen>${fortify.maxPermGen}</maxPermGen>
 				</configuration>
 			</plugin>
-			<!-- Antrun plugin that runs fortify scans via ant. The fortify scans are run using the sourceanalyzer
-				and FPRUtility commandline applications for now, so Fortify SCA will need to be installed before running -->
+			<!-- Antrun plugin that runs fortify scans via ant. The fortify scans 
+				are run using the sourceanalyzer and FPRUtility commandline applications 
+				for now, so Fortify SCA will need to be installed before running -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -470,15 +478,18 @@
 
 								<basename property="fortify.util.jar.filename" file="${fortify.util.jar.path}" />
 
-								<echo message="Using the fortify-build-utils file path: ${fortify.util.jar.path}" />
+								<echo
+									message="Using the fortify-build-utils file path: ${fortify.util.jar.path}" />
 								<echo message="Version: ${fortify.util.version}" />
 								<echo message="File name: ${fortify.util.jar.filename}" />
 								<echo message="Clean ${dir.scripts}" />
 								<delete dir="${dir.scripts}" />
 								<mkdir dir="${dir.scripts}" />
-								<copy todir="${dir.scripts}" flatten="true" overwrite="true" file="${fortify.util.jar.path}" />
+								<copy todir="${dir.scripts}" flatten="true" overwrite="true"
+									file="${fortify.util.jar.path}" />
 
-								<unzip src="${dir.scripts}/${fortify.util.jar.filename}" dest="${dir.scripts}" failOnEmptyArchive="true">
+								<unzip src="${dir.scripts}/${fortify.util.jar.filename}"
+									dest="${dir.scripts}" failOnEmptyArchive="true">
 									<mapper type="flatten" />
 									<patternset>
 										<include name="**/**/*.xml" />
@@ -489,14 +500,15 @@
 								<mkdir dir="${local.ant.lib}" />
 								<get
 									src="http://search.maven.org/remotecontent?filepath=org/eclipse/aether/aether-ant-tasks/1.0.0.v20140518/aether-ant-tasks-1.0.0.v20140518-uber.jar"
-									dest="${local.ant.lib}/aether-ant-tasks-uber.jar" verbose="true" skipexisting="true" />
+									dest="${local.ant.lib}/aether-ant-tasks-uber.jar" verbose="true"
+									skipexisting="true" />
 								<fail
-									message="Checksum mismatch for 'target/antlib/aether-ant-tasks-uber.jar'. Please delete it and rerun ant to redownload."
-								>
+									message="Checksum mismatch for 'target/antlib/aether-ant-tasks-uber.jar'. Please delete it and rerun ant to redownload.">
 									<condition>
 										<not>
-											<checksum file="${local.ant.lib}/aether-ant-tasks-uber.jar" algorithm="SHA"
-												property="95dadd03392a75564904da45108cf048abe6e5bb" verifyproperty="checksum.matches" />
+											<checksum file="${local.ant.lib}/aether-ant-tasks-uber.jar"
+												algorithm="SHA" property="95dadd03392a75564904da45108cf048abe6e5bb"
+												verifyproperty="checksum.matches" />
 										</not>
 									</condition>
 								</fail>
@@ -537,8 +549,10 @@
 			</plugin>
 		</plugins>
 		<pluginManagement>
-			<!-- NOTE: These plugins will be removed from future versions of the super POM -->
-			<!-- They are kept for the moment as they are very unlikely to conflict with lifecycle mappings (MNG-4453) -->
+			<!-- NOTE: These plugins will be removed from future versions of the super 
+				POM -->
+			<!-- They are kept for the moment as they are very unlikely to conflict 
+				with lifecycle mappings (MNG-4453) -->
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -578,17 +592,13 @@
 						<skipTests>${skipPerfTests}</skipTests>
 						<!-- Enable JMeter reports -->
 						<generateReports>true</generateReports>
-						<!--
-							To simplify debugging, it is advisable to adapt the loglevel.
-							The jmeter logs are written to the file jmeter.log.
-						-->
+						<!-- To simplify debugging, it is advisable to adapt the loglevel. 
+							The jmeter logs are written to the file jmeter.log. -->
 						<overrideRootLogLevel>DEBUG</overrideRootLogLevel>
-						<!--
-							By default, the console output during a jmeter test run is suppressed.
-							We want to display the progress using the listener "Generate Summary Results"
-							(which periodically prints stats to stdout). Therefore we have to make sure,
-							that the jmeter output is not suppressed.
-						-->
+						<!-- By default, the console output during a jmeter test run is suppressed. 
+							We want to display the progress using the listener "Generate Summary Results" 
+							(which periodically prints stats to stdout). Therefore we have to make sure, 
+							that the jmeter output is not suppressed. -->
 						<suppressJMeterOutput>false</suppressJMeterOutput>
 						<jmeterLogLevel>INFO</jmeterLogLevel>
 					</configuration>
@@ -623,7 +633,8 @@
 		<profile>
 			<id>docker-jar-project</id>
 			<activation>
-				<file><!-- add a file named .docker-jar-project-marker to war projects to activate this profile -->
+				<file><!-- add a file named .docker-jar-project-marker to war projects 
+						to activate this profile -->
 					<exists>${basedir}/.docker-jar-project-marker</exists>
 				</file>
 			</activation>
