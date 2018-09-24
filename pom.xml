@@ -602,6 +602,12 @@
 						-->
 						<suppressJMeterOutput>false</suppressJMeterOutput>
 						<jmeterLogLevel>INFO</jmeterLogLevel>
+						<jMeterProcessJVMSettings>
+				                    <arguments>
+				                        <argument>-Djavax.net.ssl.keyStore=${javax.net.ssl.keyStore}</argument>
+				                        <argument>-Djavax.net.ssl.keyStorePassword=${javax.net.ssl.keyStorePassword}</argument>
+				                    </arguments>
+				                </jMeterProcessJVMSettings>
 					</configuration>
 					<executions>
 						<!-- Configure JMeter tests -->
