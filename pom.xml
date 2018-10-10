@@ -98,7 +98,7 @@
 		
 		<testng.version>6.9.10</testng.version>
 		<cucumber.version>1.2.5</cucumber.version>
-		<restassured.version>2.9.0</restassured.version>
+		<restassured.version>3.1.1</restassured.version>
 		<selenium.htmlunit.version>2.52.0</selenium.htmlunit.version>
 	</properties>
 
