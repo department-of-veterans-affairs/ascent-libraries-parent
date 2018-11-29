@@ -62,26 +62,41 @@
 		<fortify.url>REPLACE WITH REAL VALUE IN SETTINGS.XML OR -D PARAM</fortify.url>
 
 		<!--
-			3rd party versions
+			3rd party maven plugin versions
 		 -->
-		 <!-- build software -->
+		 <!-- build plugins -->
 		<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
-		<maven.jaxb2.plugin.version>0.13.3</maven.jaxb2.plugin.version>
-		<maven.cucumber.reporting.version>3.14.0</maven.cucumber.reporting.version>
-		<krasa.jaxb.tools.version>1.5</krasa.jaxb.tools.version>
-		<jaxb2.basics.annotate.version>1.0.2</jaxb2.basics.annotate.version>
-		<sonar.maven.plugin.version>3.3.0.603</sonar.maven.plugin.version>
-		<fortify.build.util.version>1.2</fortify.build.util.version>
+		<templating-maven-plugin.version>1.0.0</templating-maven-plugin.version>
+		<jaxb2-maven-plugin-codehaus.version>1.5</jaxb2-maven-plugin-codehaus.version>
+		<maven-jaxb2-plugin-jvnet.version>0.14.0</maven-jaxb2-plugin-jvnet.version>
+		<maven-cucumber-reporting.version>3.14.0</maven-cucumber-reporting.version>
+		<krasa-jaxb-tools.version>1.5</krasa-jaxb-tools.version>
+		<jaxb2-basics-annotate.version>1.0.2</jaxb2-basics-annotate.version>
+		<!-- build pipeline plugins -->
+		<sonar-maven-plugin.version>3.3.0.603</sonar-maven-plugin.version>
+		<fortify-build-utils.version>1.2</fortify-build-utils.version>
 		<sca-maven-plugin.version>17.20</sca-maven-plugin.version>
+		<dockerfile-maven-plugin.version>1.4.4</dockerfile-maven-plugin.version>
+		<!-- instrumentation plugins -->
+		<spring-metrics.version>0.5.1.RELEASE</spring-metrics.version>
+		<prometheus.version>0.5.0</prometheus.version>
 
-		<surefire.junit47.version>2.20.1</surefire.junit47.version>
+		<!-- testing - unit / integratino / performance -->
+		<surefire-junit47.version>2.20.1</surefire-junit47.version>
 		<maven-cucumber-reporting.version>2.8.0</maven-cucumber-reporting.version>
 		<jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
 		<jmeter-maven-plugin.version>2.7.0</jmeter-maven-plugin.version>
-		<dockerfile-maven-plugin.version>1.4.4</dockerfile-maven-plugin.version>
+		<jmeter-maven-plugin.versionRange>[2.7.0,)</jmeter-maven-plugin.versionRange>
+		<testng.version>6.9.10</testng.version>
+		<cucumber.version>1.2.5</cucumber.version>
+		<restassured.version>3.1.1</restassured.version>
+		<selenium-htmlunit-driver.version>2.52.0</selenium-htmlunit-driver.version>
 		
-		<!-- application software -->
+		<!-- application plugins -->
+		<el-impl.version>2.2</el-impl.version>
+		<axiom-impl.version>1.2.20</axiom-impl.version>
 		<spring-cloud-dependencies.version>Dalston.SR5</spring-cloud-dependencies.version>
+		<swagger-annotations.version>1.5.20</swagger-annotations.version>
 		<springfox.version>2.9.2</springfox.version>
 		<fest-assert.version>2.0M10</fest-assert.version>
 		<guava.version>20.0</guava.version>
@@ -95,13 +110,10 @@
 		<logback-classic.version>1.1.11</logback-classic.version>
 		<embedded-redis.version>0.6</embedded-redis.version>
 		<jfiglet.version>0.0.8</jfiglet.version>
-		<spring-metrics.version>0.5.1.RELEASE</spring-metrics.version>
-		<prometheus.version>0.5.0</prometheus.version>
 
-		<testng.version>6.9.10</testng.version>
-		<cucumber.version>1.2.5</cucumber.version>
-		<restassured.version>3.1.1</restassured.version>
-		<selenium.htmlunit.version>2.52.0</selenium.htmlunit.version>
+		<!-- to be removed on refactor -->
+		<findbugs.version>1.3.7</findbugs.version>
+
 	</properties>
 
 	<repositories>
@@ -231,7 +243,7 @@
 		<dependency>
 			<groupId>gov.va.vetservices.fortify-build-utils</groupId>
 			<artifactId>fortify-build-utils</artifactId>
-			<version>${fortify.build.util.version}</version>
+			<version>${fortify-build-utils.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -418,7 +430,7 @@
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
-				<version>${sonar.maven.plugin.version}</version>
+				<version>${sonar-maven-plugin.version}</version>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -487,7 +499,7 @@
 						<configuration>
 							<target>
 								<property name="dir.scripts" value="target/antscripts" />
-								<property name="fortify.util.version" value="${fortify.build.util.version}" />
+								<property name="fortify.util.version" value="${fortify-build-utils.version}" />
 								<property name="fortify.util.jar.path"
 									value="${gov.va.vetservices.fortify-build-utils:fortify-build-utils:jar}" />
 								<property name="settings.file.location" value="${settings.file.location}" />
