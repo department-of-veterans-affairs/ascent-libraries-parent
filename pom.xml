@@ -618,7 +618,7 @@
 							To simplify debugging, it is advisable to adapt the loglevel.
 							The jmeter logs are written to the file jmeter.log.
 						-->
-						<overrideRootLogLevel>DEBUG</overrideRootLogLevel>
+						<overrideRootLogLevel>INFO</overrideRootLogLevel>
 						<!--
 							By default, the console output during a jmeter test run is suppressed.
 							We want to display the progress using the listener "Generate Summary Results"
