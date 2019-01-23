@@ -45,6 +45,7 @@
 		<sonar.profile.java>ASCENT</sonar.profile.java>
 		<sonar.coverage.exclusions>**/api/v*/transfer/**/*,**/*Application.java,**/*AbstractRemoteServiceCallMock.java</sonar.coverage.exclusions>
 		<sonar.exclusions>**/api/v*/transfer/**/*,**/*Application.java,**/*AbstractRemoteServiceCallMock.java</sonar.exclusions>
+		<sonar.test.exclusions>**/test/*</sonar.test.exclusions>
 		<include.int.tests.pattern>**/*IT.java,**/*Runner.java</include.int.tests.pattern>
 		<jgitflow.keepBranch>false</jgitflow.keepBranch>
 		<!-- fortify properties for easy override -->
