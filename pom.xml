@@ -86,8 +86,8 @@
 		<surefire-junit47.version>2.20.1</surefire-junit47.version>
 		<maven-cucumber-reporting.version>2.8.0</maven-cucumber-reporting.version>
 		<jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
-		<jmeter-maven-plugin.version>2.7.0</jmeter-maven-plugin.version>
-		<jmeter-maven-plugin.versionRange>[2.7.0,)</jmeter-maven-plugin.versionRange>
+		<jmeter-maven-plugin.version>2.8.5</jmeter-maven-plugin.version>
+		<jmeter-maven-plugin.versionRange>[2.8.5,)</jmeter-maven-plugin.versionRange>
 		<testng.version>6.9.10</testng.version>
 		<cucumber.version>1.2.5</cucumber.version>
 		<restassured.version>3.1.1</restassured.version>
