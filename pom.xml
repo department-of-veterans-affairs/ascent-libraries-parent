@@ -583,32 +583,32 @@
 					</executions>
 				</plugin>
 				<plugin>
-				<groupId>net.masterthought</groupId>
-				<artifactId>maven-cucumber-reporting</artifactId>
-				<version>${maven-cucumber-reporting.version}</version>
-				<executions>
-					<execution>
-						<id>execution</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<skip>${skipITs}</skip>
-							<projectName>${project.artifactId}</projectName>
-							<outputDirectory>${project.build.directory}/site/cucumber-reports
-							</outputDirectory>
-							<inputDirectory>${project.build.directory}/site
-							</inputDirectory>
-							 <jsonFiles>**/*.json</jsonFiles>
-							<skippedFails>true</skippedFails>
-							<enableFlashCharts>false</enableFlashCharts>
-							<buildNumber>${project.version}</buildNumber>		
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>	
-			
+					<groupId>net.masterthought</groupId>
+					<artifactId>maven-cucumber-reporting</artifactId>
+					<version>${maven-cucumber-reporting.version}</version>
+					<executions>
+						<execution>
+							<id>execution</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>generate</goal>
+							</goals>
+							<configuration>
+								<skip>${skipITs}</skip>
+								<projectName>${project.artifactId}</projectName>
+								<outputDirectory>${project.build.directory}/site/cucumber-reports
+								</outputDirectory>
+								<inputDirectory>${project.build.directory}/site
+								</inputDirectory>
+								 <jsonFiles>**/*.json</jsonFiles>
+								<skippedFails>true</skippedFails>
+								<enableFlashCharts>false</enableFlashCharts>
+								<buildNumber>${project.version}</buildNumber>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
 				<!-- NOTE: Plugins for JMeter Performance Tests -->
 				<plugin>
 				
