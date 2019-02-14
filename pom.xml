@@ -546,14 +546,14 @@
 			<!-- NOTE: These plugins will be removed from future versions of the super POM -->
 			<!-- They are kept for the moment as they are very unlikely to conflict with lifecycle mappings (MNG-4453) -->
 			<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<skipTests>${skipTests}</skipTests>
-				</configuration>
-			</plugin>
-							<plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<skipTests>${skipTests}</skipTests>
+					</configuration>
+				</plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-failsafe-plugin</artifactId>
 					<executions>
