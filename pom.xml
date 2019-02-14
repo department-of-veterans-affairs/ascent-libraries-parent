@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 >
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -64,8 +64,8 @@
 
 		<!--
 			3rd party maven plugin versions
-		 -->
-		 <!-- build plugins -->
+		-->
+		<!-- build plugins -->
 		<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
 		<templating-maven-plugin.version>1.0.0</templating-maven-plugin.version>
 		<jaxb2-maven-plugin-codehaus.version>1.5</jaxb2-maven-plugin-codehaus.version>
@@ -91,7 +91,7 @@
 		<cucumber.version>1.2.5</cucumber.version>
 		<restassured.version>3.3.0</restassured.version>
 		<selenium-htmlunit-driver.version>2.52.0</selenium-htmlunit-driver.version>
-		
+
 		<!-- application plugins -->
 		<el-impl.version>2.2</el-impl.version>
 		<axiom-impl.version>1.2.20</axiom-impl.version>
@@ -220,14 +220,14 @@
 			</dependency>
 			<!-- Prometheus Metrics Dependencies -->
 			<dependency>
-			 	<groupId>org.springframework.metrics</groupId>
-			  	<artifactId>spring-metrics</artifactId>
-			  	<version>${spring-metrics.version}</version>
+				<groupId>org.springframework.metrics</groupId>
+				<artifactId>spring-metrics</artifactId>
+				<version>${spring-metrics.version}</version>
 			</dependency>
 			<dependency>
-			  	<groupId>io.prometheus</groupId>
-			  	<artifactId>simpleclient_common</artifactId>
-			  	<version>${prometheus.version}</version>
+				<groupId>io.prometheus</groupId>
+				<artifactId>simpleclient_common</artifactId>
+				<version>${prometheus.version}</version>
 			</dependency>
 
 		</dependencies>
@@ -325,8 +325,8 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-	
+
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -600,7 +600,7 @@
 								</outputDirectory>
 								<inputDirectory>${project.build.directory}/site
 								</inputDirectory>
-								 <jsonFiles>**/*.json</jsonFiles>
+								<jsonFiles>**/*.json</jsonFiles>
 								<skippedFails>true</skippedFails>
 								<enableFlashCharts>false</enableFlashCharts>
 								<buildNumber>${project.version}</buildNumber>
@@ -611,7 +611,7 @@
 
 				<!-- NOTE: Plugins for JMeter Performance Tests -->
 				<plugin>
-				
+
 					<groupId>com.lazerycode.jmeter</groupId>
 					<artifactId>jmeter-maven-plugin</artifactId>
 					<version>${jmeter-maven-plugin.version}</version>
@@ -633,11 +633,11 @@
 						<suppressJMeterOutput>false</suppressJMeterOutput>
 						<jmeterLogLevel>DEBUG</jmeterLogLevel>
 						<jMeterProcessJVMSettings>
-				                    <arguments>
-				                        <argument>-Djavax.net.ssl.keyStore=${javax.net.ssl.keyStore}</argument>
-				                        <argument>-Djavax.net.ssl.keyStorePassword=${javax.net.ssl.keyStorePassword}</argument>
-				                    </arguments>
-				                </jMeterProcessJVMSettings>
+							<arguments>
+								<argument>-Djavax.net.ssl.keyStore=${javax.net.ssl.keyStore}</argument>
+								<argument>-Djavax.net.ssl.keyStorePassword=${javax.net.ssl.keyStorePassword}</argument>
+							</arguments>
+						</jMeterProcessJVMSettings>
 					</configuration>
 					<executions>
 						<!-- Configure JMeter tests -->
