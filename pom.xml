@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 >
 	<modelVersion>4.0.0</modelVersion>
@@ -277,42 +276,43 @@
 		</resources>
 		<plugins>
 			<!-- Adds git properties to maven environment (for the list, see target/classes/git.properties) -->
-				<plugin>
-					<!-- Adds git properties to maven environment (for the list, see target/classes/git.properties) -->
-					<groupId>pl.project13.maven</groupId>
-					<artifactId>git-commit-id-plugin</artifactId>
-					<version>${git-commit-id-plugin.version}</version>
-					<executions>
-						<execution>
-							<id>get-the-git-infos</id>
-							<goals>
-								<goal>revision</goal>
-							</goals>
-							<phase>initialize</phase>
-						</execution>
-					</executions>
-					<configuration>
-						<dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
-						<!--The plugin will generate properties as '${prefix}.something.whatever' -->
-						<prefix>git</prefix>
-						<verbose>false</verbose>
-						<!-- Write 'git.properties' file that can be read by apps e.g. using new Properties().load(/**/) -->
-						<generateGitPropertiesFile>true</generateGitPropertiesFile>
-						<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
-						<format>properties</format>
-						<!-- Skip '<packaging>pom</packaging>' projects? -->
-						<skipPoms>false</skipPoms>
-						<injectAllReactorProjects>true</injectAllReactorProjects>
-						<failOnNoGitDirectory>false</failOnNoGitDirectory>
-						<failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
-						<skip>false</skip>
-						<excludeProperties>
-							<excludeProperty>git.user.*</excludeProperty>
-							<excludeProperty>git.build.user.*</excludeProperty>
-							<excludeProperty>git.commit.user.*</excludeProperty>
-						</excludeProperties>
-					</configuration>
-				</plugin>			<!-- repackages jar and war plugins so they can be executed with command line -->
+			<plugin>
+				<!-- Adds git properties to maven environment (for the list, see target/classes/git.properties) -->
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+				<version>${git-commit-id-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>get-the-git-infos</id>
+						<goals>
+							<goal>revision</goal>
+						</goals>
+						<phase>initialize</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+					<!--The plugin will generate properties as '${prefix}.something.whatever' -->
+					<prefix>git</prefix>
+					<verbose>false</verbose>
+					<!-- Write 'git.properties' file that can be read by apps e.g. using new Properties().load(/**/) -->
+					<generateGitPropertiesFile>true</generateGitPropertiesFile>
+					<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+					<format>properties</format>
+					<!-- Skip '<packaging>pom</packaging>' projects? -->
+					<skipPoms>false</skipPoms>
+					<injectAllReactorProjects>true</injectAllReactorProjects>
+					<failOnNoGitDirectory>false</failOnNoGitDirectory>
+					<failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
+					<skip>false</skip>
+					<excludeProperties>
+						<excludeProperty>git.user.*</excludeProperty>
+						<excludeProperty>git.build.user.*</excludeProperty>
+						<excludeProperty>git.commit.user.*</excludeProperty>
+					</excludeProperties>
+				</configuration>
+			</plugin>
+			<!-- repackages jar and war plugins so they can be executed with command line -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -581,6 +581,7 @@
 
 		<pluginManagement>
 			<plugins>
+			<!-- 
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-antrun-plugin</artifactId>
@@ -600,6 +601,7 @@
 						</execution>
 					</executions>
 				</plugin>
+				 -->
 				<!-- NOTE: These plugins will be removed from future versions of the super POM -->
 				<!-- They are kept for the moment as they are very unlikely to conflict with lifecycle mappings (MNG-4453) -->
 				<plugin>
